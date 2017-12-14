@@ -62,8 +62,6 @@
 				{
 					initialiserSessionUtilisateur($email);
 					echo ('<script> window.location.href = "index.php?url=accueil"; </script>');
-					
-													
 					return "entrez je vous prie";
 	
 				}

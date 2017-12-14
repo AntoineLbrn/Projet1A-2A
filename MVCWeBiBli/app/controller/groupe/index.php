@@ -4,9 +4,7 @@
 	require_once (APP . 'app/view/templates/header.php');
 
 	$Groupe = new Groupe();
-	if(isset($_POST["delete"])){
-		$Groupe->supprimergroupe($_POST["ID_GROUPE"]);
-	}
+	
 	if(isset($_GET["modifiergroupe2"])){
 		if($_POST["mdp"]=='' && ($_POST["statut"]=='1'||$_POST["statut"]=='2')){
 			$message[]="Le Mot de passe doit etre remplie pour un Groupe Privée ou Invisible";
@@ -39,7 +37,12 @@
 		$groupe = getAllGroupe();
 	}
 	if(isset($_GET["modifiergroupe"])){
-		require_once (APP . 'app/view/groupe/indexcree.php');
+		if(isset($_POST["delete"])){
+		$Groupe->supprimergroupe($_POST["id"]);
+		$groupe = getAllGroupe();
+		require_once (APP . 'app/view/groupe/index.php');
+		}else{
+		require_once (APP . 'app/view/groupe/indexcree.php');}
 	}else{
 		require_once (APP . 'app/view/groupe/index.php');
 	}

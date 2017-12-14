@@ -127,9 +127,9 @@
 
                     echo '</td>';
 
-                    echo '<td>';
+                    echo '<td class="col-lg-1">';
 
-                    echo '<button type="submit" value="' . $resultat["id_oeuvre"] . '">  <span class="glyphicon glyphicon-remove"></span> </button>';
+                    echo '<a href="index.php?url=inventaire&amp;id=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-remove"></span></a>';
 
                     echo '</td>';
 
