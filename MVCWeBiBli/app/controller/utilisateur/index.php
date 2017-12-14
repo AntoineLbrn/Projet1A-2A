@@ -1,13 +1,16 @@
 <?php
 	
-require_once (APP . 'app/model/Utilisateur.php');
-require_once (APP . 'app/model/Appartient.php');
-require_once (APP . 'app/model/Groupe.php');
+	require_once (APP . 'app/model/Utilisateur.php');
+	require_once (APP . 'app/model/Appartient.php');
+	require_once (APP . 'app/model/Groupe.php');
 
-$Utilisateur = new Utilisateur();
+	$Utilisateur = new Utilisateur();
 
-$idUtilisateur = $Utilisateur->getUtilisateurParId($_GET['id']);
+	$idUtilisateur = $Utilisateur->getUtilisateurParId($_GET['id']);
 
+	echo '<br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> ';
+	var_dump($idUtilisateur);
+	echo '<br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br> ';
 
 /* Affichage des groupes */
 

@@ -3,24 +3,46 @@
 	require_once (APP . 'app/model/Groupe.php');
 	require_once (APP . 'app/view/templates/header.php');
 
+	$Groupe = new Groupe();
+	if(isset($_POST["delete"])){
+		$Groupe->supprimergroupe($_POST["ID_GROUPE"]);
+	}
+	if(isset($_GET["modifiergroupe2"])){
+		if($_POST["mdp"]=='' && ($_POST["statut"]=='1'||$_POST["statut"]=='2')){
+			$message[]="Le Mot de passe doit etre remplie pour un Groupe Privée ou Invisible";
+		}else if(!($_POST["mdp"]=='') && $_POST["statut"]=='0'){
+			$message[]="Le Mot de passe ne peux pas etre remplis pour un Groupe Public";
+		}else{
+			$Groupe->modifiergroupe($_POST["id"],$_POST["nom"],$_POST["mdp"],$_POST["statut"]);
+		}
+	}
 	if(isset($_POST["OK"])){
-			$groupe = rechercherGroupe($_POST["recherche"]);
+			//$groupe = rechercherGroupe($_POST["recherche"]);
+			$groupes = $Groupe->getGroupeARejoindre($_SESSION["utilisateur"]["id"]);
+			$groupe=array();
+			foreach ($groupes as $gr)
+			{
+				$test = $Groupe->testAppartenanceGroupe($_SESSION["utilisateur"]["id"],$gr["ID_GROUPE"]);
+				if (empty($test))
+				{
+					$groupe[]=$gr;
+				}
+			}
 	}else{
 			$groupe = getAllGroupe();
 	}
-
-	if(isset($_GET["creegroupe2"])){
-		$Groupe = new Groupe();
-		$message = $Groupe->ajouterGroupe($_POST["nom"],$_POST["mdp"],$_POST["statut"]);
+	if(isset($_GET["rejoindreGroupe"])){
+		$Groupe->rejoindreGroupe($_POST["nom"]);
+	}
+	if(isset($_GET["creegroupe1"])){
+		$Groupe->ajouterGroupe($_POST["nom"],$_POST["mdp"],$_POST["statut"]);
+		$groupe = getAllGroupe();
+	}
+	if(isset($_GET["modifiergroupe"])){
+		require_once (APP . 'app/view/groupe/indexcree.php');
+	}else{
 		require_once (APP . 'app/view/groupe/index.php');
 	}
-
-	if(isset($_GET["creegroupe1"])){
-			require_once (APP . 'app/view/groupe/indexcree.php');
-	}else{
-			require_once (APP . 'app/view/groupe/index.php');
-	}
-
 	function getAllGroupe(){
 		$groupe = new Groupe();
 		$groupe = $groupe->getAllGroupe();

@@ -17,7 +17,7 @@
                             <div class="input-group input-group-sm" style="max-width:360px;">
                           <input type="text" class="form-control" placeholder="Rechercher un groupe" name="recherche" id="srch-term">
                           <div class="input-group-btn">
-                            <button class="btn btn-default" name="OK" type="submit"><i class="glyphicon glyphicon-search"></i></button></form>
+                            <button class="btn btn-default" name="OK" type="submit" value="1"><i class="glyphicon glyphicon-search"></i></button></form>
                           </div>
                         </div>
                     <ul class="nav navbar-nav">

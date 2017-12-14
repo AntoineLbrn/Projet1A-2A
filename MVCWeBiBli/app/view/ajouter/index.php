@@ -16,8 +16,7 @@
     <form method="post" action="" enctype="multipart/form-data">
         <div class="full col-sm-7">
 	    	<select class="form-control" name="groupe" id="selectGroupe">
-                <option value="" selected>Groupe</option>
-                <option value="">Inventaire</option>
+	        	<option value="" selected>Groupe</option>
 	        	<?php
 	        	foreach ($groupe as $value)
 	        	{
