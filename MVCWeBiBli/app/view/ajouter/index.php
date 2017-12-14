@@ -92,7 +92,7 @@
 	        </br>
             <center>
 	        	<label class="btn btn-default btn-file">
-			   		Déposer une partition <input name="fichier" type="file" hidden>
+			   		Parcourir <input name="fichier" type="file" hidden>
 				</label>
                 <input type="hidden" name="MAX_FILE_SIZE" value="100000">
 				</br>

@@ -50,7 +50,7 @@
                                                     <td></td>
                                                     <?php if($value['ID_UTILISATEUR']==$_SESSION["utilisateur"]["id"] && $value['RANG']==1){ ?>
                                                         <td><input type="submit" style="float:right" class="btn btn-primary" value='Modifier'></td>
-                                                        <td><button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-remove"></i></button></td>
+                                                        <td><button type="submit" class="btn btn-primary" name='delete'><i class="glyphicon glyphicon-remove"></i></button></td>
                                                     <?php } 
                                                     else{ ?>
                                                     <td></td>
@@ -64,7 +64,7 @@
                                                         <td></td>
                                                     <?php if($value['ID_UTILISATEUR']==$_SESSION["utilisateur"]["id"] && $value['RANG']==1){ ?>
                                                         <td><input type="submit" style="float:right" class="btn btn-primary" value='Modifier'></td>
-                                                        <td><button type="submit" class="btn btn-primary" value='delete'><i class="glyphicon glyphicon-remove"></i></button></td>
+                                                        <td><button type="submit" class="btn btn-primary" name='delete'><i class="glyphicon glyphicon-remove"></i></button></td>
                                                     <?php }
                                                     else{ ?>
                                                     <td></td>
@@ -77,7 +77,7 @@
                                                         <td></td>
                                                     <?php if($value['ID_UTILISATEUR']==$_SESSION["utilisateur"]["id"] && $value['RANG']==1){ ?>
                                                         <td><input type="submit" style="float:right" class="btn btn-primary" value='Modifier'></td>
-                                                        <td><button type="submit" class="btn btn-primary" value='delete'><i class="glyphicon glyphicon-remove"></i></button></td>
+                                                        <td><button type="submit" class="btn btn-primary" name='delete'><i class="glyphicon glyphicon-remove"></i></button></td>
                                                     <?php }
                                                     else{ ?>
                                                     <td></td>
