@@ -16,8 +16,7 @@
     <form method="post" action="" enctype="multipart/form-data">
         <div class="full col-sm-7">
 	    	<select class="form-control" name="groupe" id="selectGroupe">
-                <option value="" selected>Groupe</option>
-                <option value="">Inventaire</option>
+	        	<option value="" selected>Groupe</option>
 	        	<?php
 	        	foreach ($groupe as $value)
 	        	{
@@ -93,7 +92,7 @@
 	        </br>
             <center>
 	        	<label class="btn btn-default btn-file">
-			   		Parcourir <input name="fichier" type="file" hidden>
+			   		Déposer une partition <input name="fichier" type="file" hidden>
 				</label>
                 <input type="hidden" name="MAX_FILE_SIZE" value="100000">
 				</br>
