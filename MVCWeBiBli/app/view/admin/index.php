@@ -96,7 +96,7 @@
                 </thead>
                 <tbody>
                     <?php
-                    while ($donnees = $users->fetch()) {?>
+                    while ($donnees = $users    ->fetch()) {?>
                         <tr>
                             <td>
                                 <?php echo '<a href="index.php?url=utilisateur&amp;id=' . $donnees['ID_UTILISATEUR'] . '">' . $donnees['ID_UTILISATEUR'] . '</a>' ;?> 

@@ -11,7 +11,7 @@
 <body>
 
 <div class="wrapper">
-    <div>
+    <div class="box">
         <div class="row row-offcanvas row-offcanvas-left">
 
        

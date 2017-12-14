@@ -31,7 +31,6 @@
 
 	$user = $Utilisateur->getUtilisateurNonValide();
 	$users = $Utilisateur->getUtilisateur();
-	var_dump($users);
 
 	require_once (APP . 'app/view/templates/header.php');
 	require_once (APP . 'app/view/admin/index.php');	

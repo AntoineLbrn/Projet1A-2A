@@ -23,7 +23,7 @@ class Groupe
 			}
 			function getAllGroupe()
 			{
-				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR)";
+				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where ID_GROUPE>0";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();
@@ -49,8 +49,8 @@ class Groupe
 			function rejoindreGroupe($groupe)
 			{
 				$id = $this->getId($groupe);
-				$sql = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`) VALUES ('$id','" . $_SESSION["ID_UTILISATEUR"] . "',0)";
-
+				$id = $id["ID_GROUPE"];
+				$sql = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`) VALUES ('$id','" . $_SESSION["utilisateur"]["id"]."',0)";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 			}
@@ -58,12 +58,7 @@ class Groupe
 				$sql = "SELECT ID_GROUPE FROM GROUPE where nom_groupe = '".$groupe."'";
 				$query = $this->db->prepare($sql);
 				$query->execute();
-				$query->fetchAll();
-				foreach ($query as $value)
-	        	{
-	        		$id = $value["ID_GROUPE"];
-	        	}
-	        	return $id;
+				return $query->fetch();
 			}
 
 			function getNomGroupe($idGroupe){
@@ -72,7 +67,33 @@ class Groupe
 				$query->execute();
 				return $query->fetchAll();
 			}
+			function modifiergroupe($idGroupe,$nom,$mdp,$statut){
+				$sql = "UPDATE GROUPE set NOM_GROUPE='".$nom."',mot_de_passe='".$mdp."',STATUT_GROUPE='".$statut."' where ID_GROUPE='".$idGroupe."'";
+				$query = $this->db->prepare($sql);
+				$query->execute();
+			}
 
-
+			function getGroupeARejoindre($id)
+			{
+				$sql = "SELECT * FROM APPARTIENT join Utilisateur using (ID_UTILISATEUR) join groupe using (ID_GROUPE) where ID_UTILISATEUR <> $id " ;
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				return $query->fetchAll();				
+			}
+			function testAppartenanceGroupe($idUti,$idGroupe)
+			{
+				$sql = "SELECT * FROM APPARTIENT where ID_UTILISATEUR = $idUti and ID_GROUPE=$idGroupe" ;
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				return $query->fetchAll();	
+			}
+			function supprimergroupe($ID){
+				$sql = "DELETE FROM GROUPE where ID_GROUPE = $ID";
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				$sql = "DELETE FROM APPARTIENT where ID_GROUPE = $ID";
+				$query = $this->db->prepare($sql);
+				$query->execute();
+			}
 		}
 ?>

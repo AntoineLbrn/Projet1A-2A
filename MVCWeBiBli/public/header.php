@@ -28,9 +28,6 @@
                       <li>
                         <a href="index.php?url=ajouter" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Ajouter une oeuvre</a>
                       </li>
-                       <li>
-                        <a href="index.php?url=inventaire" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Mon inventaire</a>
-                      </li>
                       <?php if ($_SESSION["utilisateur"]["rang"]==2){?><li>
                         <a href="index.php?url=admin" role="button" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Gérer les inscriptions</a>
                       </li><?php }?>
