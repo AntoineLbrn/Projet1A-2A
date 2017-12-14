@@ -18,11 +18,11 @@
 	        }
 	    }
 
-	    function getOeuvreAvecIdUser($id)
+	    function getOeuvreAvecIdUserInventaire($id)
 	    {
 			$utilisateur = $this->db->query("select * from Oeuvre where ID_OEUVRE in
 				(
-					SELECT ID_OEUVRE FROM post WHERE ID_UTILISATEUR=$id
+					SELECT ID_OEUVRE FROM post WHERE ID_UTILISATEUR=$id and `ID_GROUPE`=0
 				)
 				");
 			return $utilisateur->fetchall();
@@ -32,6 +32,13 @@
 			$sql = "INSERT INTO post (ID_UTILISATEUR,ID_GROUPE,ID_OEUVRE) values (" . $utilisateur ."," . $groupe ."," . $oeuvre .")";
 			$query = $this->db->prepare($sql);
 			$query->execute();				    	
+	    }
+
+	    function supprimerOeuvreInventaire($oeuvre)
+	    {
+	    	$sql = "DELETE FROM `post` WHERE `ID_OEUVRE`= $oeuvre and `ID_GROUPE`=0 ";
+			$exec = $this->db->prepare($sql);
+			$exec->execute();	
 	    }
 
 	   

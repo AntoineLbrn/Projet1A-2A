@@ -4,18 +4,25 @@
 	require_once (APP . 'app/model/Genre.php');
 require_once (APP . 'app/model/Oeuvre.php');
 
+$Post = new Post();
+
+if ( isset($_GET['id']))
+{
+	echo '<br><br><br><br><br><br>';
+	var_dump($_GET['id']);
+	$supprimerOeuvre = $Post->supprimerOeuvreInventaire($_GET['id']);
+}
+
+//var_dump($_GET['id']);
+	
 
 	
 
-	$Post = new Post();
-
 	
-
-	
-	$oeuvres = $Post->getOeuvreAvecIdUser($_SESSION["utilisateur"]["id"]);
+$oeuvres = $Post->getOeuvreAvecIdUserInventaire($_SESSION["utilisateur"]["id"]);
 $Genre = new Genre();
 
-var_dump($oeuvres);
+//var_dump($oeuvres);
 
 
 $tab= array();
@@ -30,6 +37,8 @@ foreach ($oeuvres as $oeuvre)
   $tab[$i]["genre"] = $genre["libellé"];
   $i=$i + 1;
 }
+
+
 
 	//var_dump($oeuvres);
 
