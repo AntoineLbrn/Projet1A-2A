@@ -17,12 +17,16 @@
 
 	if (isset($_POST["sub"]))
 	{
-		if ($_POST["groupe"]=="" || !isset($_FILES["fichier"]) || ($_POST["genre"]=="" && empty($_POST["nouveauGenre"])) || empty($_POST["nomOeuvre"]) || empty($_POST["auteur"]) || !isset($_POST["dateoeuvre"]))
+		if (!isset($_FILES["fichier"]) || ($_POST["genre"]=="" && empty($_POST["nouveauGenre"])) || empty($_POST["nomOeuvre"]) || empty($_POST["auteur"]) || !isset($_POST["dateoeuvre"]))
 		{
 			$err = "Veuillez remplir tous les champs";
 		}
 		else
 		{
+			if ($_POST["groupe"]=="")
+			{
+				$inventaire = 1;
+			}
 			if (!empty($_POST["nouveauGenre"]))
 			{
 				$Genre = new Genre();
@@ -93,7 +97,11 @@
 					  $artisteO=$artisteO["ID_ARTISTE"];
 					  $ecrit = $Ecrit->insererEcrit($idO["ID_OEUVRE"],$artisteO);
 					  $Post = new Post();
-					  $Post->setPost($_SESSION["utilisateur"]["id"],$_POST["groupe"],$idO["ID_OEUVRE"]);
+					  if ($inventaire!=1)
+					  {
+					  	$Post->setPost($_SESSION["utilisateur"]["id"],$_POST["groupe"],$idO["ID_OEUVRE"]);
+					  }
+					  $Post->setPost($_SESSION["utilisateur"]["id"],0,$idO["ID_OEUVRE"]);
 			     }
 			     else //Sinon (la fonction renvoie FALSE).
 			     {
