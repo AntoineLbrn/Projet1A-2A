@@ -27,6 +27,15 @@
 				");
 			return $utilisateur->fetchall();
 	    }
+
+	    function getOeuvreAvecIdGroupe($idGroupe)
+	    {
+			$sql = "SELECT * FROM Post where ID_GROUPE = $idGroupe";
+			$query = $this->db->prepare($sql);
+			$query->execute();
+			return $query->fetchall();
+	    }
+
 	    function setPost($utilisateur,$groupe,$oeuvre)
 	    {
 			$sql = "INSERT INTO post (ID_UTILISATEUR,ID_GROUPE,ID_OEUVRE) values (" . $utilisateur ."," . $groupe ."," . $oeuvre .")";

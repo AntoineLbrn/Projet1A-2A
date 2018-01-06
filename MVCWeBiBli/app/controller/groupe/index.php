@@ -3,10 +3,21 @@
 	require_once (APP . 'app/model/Groupe.php');
 	require_once (APP . 'app/view/templates/header.php');
 
+	
+
 	if(isset($_POST["OK"])){
 			$groupe = rechercherGroupe($_POST["recherche"]);
 	}else{
 			$groupe = getAllGroupe();
+	}
+
+	if(isset($_GET["idGroupe"]))
+	{
+		
+		echo ('<script> window.location.href = "index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]) ; </script>');
+	}
+	else{
+		require_once (APP . 'app/view/groupe/index.php');
 	}
 
 	if(isset($_GET["creegroupe2"])){
@@ -20,6 +31,8 @@
 	}else{
 			require_once (APP . 'app/view/groupe/index.php');
 	}
+
+	
 
 	function getAllGroupe(){
 		$groupe = new Groupe();
