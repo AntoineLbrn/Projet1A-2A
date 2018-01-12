@@ -38,7 +38,7 @@
 					<br><br>
 					<input type="submit" name ="submit" class="btn btn-primary"> 
 					<br><br>
-					 <?php  echo '<a href="index.php?url=interfaceGroupe&idGroupe=' .$_GET["idGroupe"] . '" class="btn btn-success"> Retour au menu </a>'; ?>
+					 <?php  echo '<a href="index.php?url=interfaceGroupe&idGroupe=' . $_GET["idGroupe"] . '" class="btn btn-success"> Retour au menu </a>'; ?>
 					
 				</form>               
 			</div>
@@ -49,15 +49,7 @@
 
 </body>
 
-<script>
-	function myFunction() {
-		<?php
 
-		echo ('<script> window.location.href = "index.php?url=interfaceGroupe&idGroupe=' .$_GET["idGroupe"] . '"; return false;</script>');
-
-		?>
-	}
-</script>
 
 
 

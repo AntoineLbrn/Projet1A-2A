@@ -23,6 +23,7 @@ if(isset($_POST['submit']))
 	//var_dump($_SESSION['utilisateur']['id']);
 
 	$updtInstrument = $Appartient->setInstrumentParIdParGroupe($_SESSION['utilisateur']['id'], $_GET["idGroupe"], $instrument[0]['ID_instrument']);
+	echo ('<script> window.location.href = "index.php?url=interfaceGroupe&idGroupe=' . $_GET["idGroupe"] . '" </script>');
 }
 
 $instrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($_SESSION['utilisateur']['id'], $_GET["idGroupe"]);

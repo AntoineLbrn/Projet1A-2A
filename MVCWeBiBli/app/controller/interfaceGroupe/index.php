@@ -5,6 +5,7 @@ require_once (APP . 'app/model/Instrument.php');
 require_once (APP . 'app/model/Post.php');
 require_once (APP . 'app/model/Oeuvre.php');
 require_once (APP . 'app/model/Utilisateur.php');
+require_once (APP . 'app/model/Genre.php');
 require_once (APP . 'app/view/templates/header.php');
 
 $Groupe = new Groupe();
@@ -32,6 +33,13 @@ if(isset($_POST['ajouterInstu']))
 header("Location: index.php?url=ajouterInstrumentGroupe&idGroupe=" . $_GET["idGroupe"]);
 exit;
 }
+
+$Genre = new Genre();
+
+$chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
+
+
+
 
 
 

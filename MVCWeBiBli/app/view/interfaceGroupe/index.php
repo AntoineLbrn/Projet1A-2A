@@ -46,7 +46,7 @@
 
 								<div class="panel-body">
 
-									<p class="lead">Mon Profil</p>
+									<p class="lead">Identité du groupe</p>
 
 									<div class="col-lg-7">
 
@@ -59,47 +59,20 @@
 
 												<tr>
 													<hr>
-													<p> Nom :   <?php echo ($_SESSION["utilisateur"]["nom"]); ?></p> <!--<?php echo $donnees['PRENOM_UTILISATEUR']; ?>-->
+													<p> Nom du groupe :   <?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></p> <!--<?php echo $donnees['PRENOM_UTILISATEUR']; ?>-->
 												</tr>
 												<tr>
 													<hr>
-													<p> Prénom :  <?php echo ($_SESSION["utilisateur"]["prenom"]); ?></p> <!--<?php echo $donnees['PRENOM_UTILISATEUR']; ?>-->
+													<p> Chef d'orchestre :  <?php echo $chefOrchestre[0]["NOM_UTILISATEUR"] . ' ' . $chefOrchestre[0]["PRENOM_UTILISATEUR"] ; ?></p>
 												</tr>
 												<tr>
 													<hr>
-													<p> Mail :  <?php echo($_SESSION["utilisateur"]["email"]); ?></p> <!--<?php echo $donnees['PRENOM_UTILISATEUR']; ?>-->
+													<p> Mail :  <?php echo $chefOrchestre[0]["EMAIL"]; ?></p> <!--<?php echo $donnees['PRENOM_UTILISATEUR']; ?>-->
 												</tr>
 
 												<tr>
-													<hr>
-													<p> Orchestre :
-
-														<?php 
-
-														$i = 0;
-														foreach($nomGroupes as $nomGroupe)
-														{
-
-
-
-															if ($i != sizeof($nomGroupes)-1)
-															{
-
-																echo  $nomGroupe['nomGroupe']  . ' / ' ;
-																$i = $i+1;
-
-															}
-															else
-															{
-
-																echo $nomGroupe['nomGroupe'] ;
-															} 
-														}  
-
-
-														?>
-
-													</p>
+													
+													
 													<hr>
 												</tr>
 
@@ -172,10 +145,11 @@
 										<table class="table">
 											<thead>
 												<tr class="filters">
-													<th><input type="text" class="form-control" placeholder="Nom" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Prenom" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Mail" disabled></th>
-													<th><input type="text" class="form-control"  placeholder="Instrument" disabled></th>
+													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Nom" disabled></th>
+													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Prenom" disabled></th>
+													<th class="col-lg-4"><input type="text" class="form-control" placeholder="Mail" disabled></th>
+													<th class="col-lg-3"><input type="text" class="form-control"  placeholder="Instrument" disabled></th>
+													<th class="col-lg-2"><input type="text" class="form-control "  placeholder="Editer" disabled></th>
 
 												</tr>
 											</thead>
@@ -233,7 +207,7 @@
 													{
 														echo '<form method="post" action="" enctype="multipart/form-data">';
 
-														echo '<span class="input-group-btn"><button class="btn btn-lg btn-primary" name="ajouterInstu" type="submit"><span class="glyphicon glyphicon-pencil"></span></button></span>';
+														echo '<center><span class="input-group-btn"><button class="btn btn-lg btn-primary" name="ajouterInstu" type="submit"><span class="glyphicon glyphicon-pencil"></span></button></span></center>';
 
 														echo '</form>';
 													}
@@ -266,10 +240,10 @@
 										<table class="table">
 											<thead>
 												<tr class="filters">
-													<th><input type="text" class="form-control" placeholder="Nom" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Prenom" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Mail" disabled></th>
-
+													<th><input type="text" class="form-control" placeholder="Titre" disabled></th>
+													<th><input type="text" class="form-control" placeholder="Genre" disabled></th>
+													<th><input type="text" class="form-control" placeholder="URL" disabled></th>
+													<th><input type="text" class="form-control" placeholder="Utilisateur" disabled></th>
 
 												</tr>
 											</thead>
@@ -286,6 +260,10 @@
 
 													$utilisateur = $Utilisateur->getUtilisateurParId($resultat["ID_UTILISATEUR"]);
 
+													$libelleGenre = $Genre->getGenre($oeuvre[0]["ID_genre"]);
+
+													
+
 													echo '<tr>';
 
 													echo '<td>';
@@ -296,7 +274,7 @@
 
 													echo '<td>';
 
-													echo $oeuvre[0]["ID_genre"];
+													echo $libelleGenre["libellé"];
 
 													echo '</td>';
 
