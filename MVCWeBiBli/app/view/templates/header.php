@@ -17,7 +17,7 @@
                             <div class="input-group input-group-sm" style="max-width:360px;">
                           <input type="text" class="form-control" placeholder="Rechercher un groupe" name="recherche" id="srch-term">
                           <div class="input-group-btn">
-                            <button class="btn btn-default" name="OK" type="submit" value="1"><i class="glyphicon glyphicon-search"></i></button></form>
+                            <button class="btn btn-default" name="OK" type="submit"><i class="glyphicon glyphicon-search"></i></button></form>
                           </div>
                         </div>
                     <ul class="nav navbar-nav">
@@ -26,6 +26,9 @@
                       </li>
                       <li>
                         <a href="index.php?url=ajouter" role="button" data-toggle="modal"><i class="glyphicon glyphicon-plus"></i> Ajouter une oeuvre</a>
+                      </li>
+                      <li>
+                        <a href="index.php?url=inventaire" role="button" data-toggle="modal"><i class="glyphicon glyphicon-folder-open"></i> &nbsp;Mon inventaire</a>
                       </li>
                       <?php if ($_SESSION["utilisateur"]["rang"]==2){?><li>
                         <a href="index.php?url=admin" role="button" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Gérer les inscriptions</a>

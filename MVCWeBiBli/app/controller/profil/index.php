@@ -9,7 +9,7 @@ require_once (APP . 'app/model/groupe.php');
 /* Affichage des Oeuvres */
 $Post = new Post();
 
-$oeuvres = $Post->getOeuvreAvecIdUser($_SESSION["utilisateur"]["id"]);
+$oeuvres = $Post->getOeuvreAvecIdUserInventaire($_SESSION["utilisateur"]["id"]);
 $Genre = new Genre();
 
 
