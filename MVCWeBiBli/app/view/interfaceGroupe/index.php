@@ -242,9 +242,7 @@
 												<tr class="filters">
 													<th><input type="text" class="form-control" placeholder="Titre" disabled></th>
 													<th><input type="text" class="form-control" placeholder="Genre" disabled></th>
-													<th><input type="text" class="form-control" placeholder="URL" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Utilisateur" disabled></th>
-
+													<th><input type="text" class="form-control" placeholder="Télécharger" disabled></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -254,7 +252,8 @@
 
 
 
-												foreach ($Oeuvres as $resultat) {
+												foreach ($Oeuvres as $resultat)
+												{
 
 													$oeuvre = $Oeuvre->getOeuvresAvecID($resultat["ID_OEUVRE"]);
 
@@ -280,16 +279,9 @@
 
 													echo '<td>';
 
-													echo $oeuvre[0]["URL"];
+													echo "<a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."'> ";
 
 													echo '</td>';
-
-													echo '<td>';
-
-													echo $utilisateur[0]["NOM_UTILISATEUR"] . ' ' . $utilisateur[0]["PRENOM_UTILISATEUR"];
-
-													echo '</td>';
-
 
 
 													/*if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
