@@ -7,9 +7,9 @@
 	
 	if(isset($_GET["modifiergroupe2"])){
 		if($_POST["mdp"]=='' && ($_POST["statut"]=='1'||$_POST["statut"]=='2')){
-			$message[]="Le Mot de passe doit etre remplie pour un Groupe Privée ou Invisible";
+			$message[]="Le mot de passe doit etre rempli pour un Groupe Privé ou Invisible";
 		}else if(!($_POST["mdp"]=='') && $_POST["statut"]=='0'){
-			$message[]="Le Mot de passe ne peux pas etre remplis pour un Groupe Public";
+			$message[]="Le mot de passe ne peut pas etre rempli pour un Groupe Public";
 		}else{
 			$Groupe->modifiergroupe($_POST["id"],$_POST["nom"],$_POST["mdp"],$_POST["statut"]);
 		}

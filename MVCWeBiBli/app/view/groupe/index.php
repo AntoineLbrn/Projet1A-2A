@@ -40,7 +40,7 @@
                         foreach($groupe as $value){?>
                             <form method="post" action="index.php?url=groupe&amp;modifiergroupe=1">
                             <tr class="ligne" style="cursor:pointer;background-color: white;">
-                                            <td><a href="pageGroupe/index.php?<?php echo $value['ID_GROUPE']?>"><input name="nom" type="hidden" value="<?php echo $value["NOM_GROUPE"] ?>"><?php echo $value["NOM_GROUPE"] ?></a></td>
+                                            <td><input name="nom" type="hidden" value="<?php echo $value["NOM_GROUPE"] ?>"><?php echo '<a href="index.php?url=interfaceGroupe&idGroupe=' . $value["ID_GROUPE"] . '" style="color: #000;">' . $value["NOM_GROUPE"] . '</a>' ?></td>
                                             <td><?php echo $value["NOM_UTILISATEUR"] ?></td>
                                             <?php
                                                 if($value['STATUT_GROUPE']== 0){

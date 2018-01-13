@@ -36,9 +36,9 @@ exit;
 
 $Genre = new Genre();
 
+
+
 $chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
-
-
 
 
 
