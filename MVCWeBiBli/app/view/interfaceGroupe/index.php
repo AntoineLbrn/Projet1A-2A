@@ -12,18 +12,105 @@
 			padding : 15px;
 
 		}
+		.navbar
+		{
+			z-index:2;
+		}
+		.navbar-fixed-left {
+		  width: 11vw;
+		  position: fixed;
+		  border-radius: 0;
+		  height: 100%;
+		  margin-top: 3vh;
+		  margin-left:-1.2vw;
+		}
+
+		.navbar-fixed-left .navbar-nav > li {
+		  float: none;  /* Cancel default li float: left */
+		  width: 139px;
+		}
+
+		.navbar-fixed-left + .container {
+		  padding-left: 160px;
+		}
+
+		/* On using dropdown menu (To right shift popuped) */
+		.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
+		  margin-top: -50px;
+		  margin-left: 140px;
+		}
+		.dropdown
+		{
+			margin-top: 0.5vh;
+		}
 
 	</style>
 	<title></title>
 </head>
 <body>
-
-	<div class="wrapper">
-		<div>
 			<div class="row row-offcanvas row-offcanvas-left">
 
+	<div class="navbar navbar-inverse navbar-fixed-left">
+	<span class="navbar-brand" ><?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></span>
+	  <ul class="nav navbar-nav">
+	   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $chefOrchestre[0]["NOM_UTILISATEUR"] . ' ' . $chefOrchestre[0]["PRENOM_UTILISATEUR"] ; ?> <span class="caret"></span></a>
+	     <ul class="dropdown-menu" role="menu">
+	      <li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
+	      <li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
+	      <li><a href="index.php?url=profil&amp;id <?php $chefOrchestre[0]['ID_UTILISATEUR']?>">Voir profil</a></li>
+	     </ul>
+	    </li>
+	   <?php
+foreach ($Utilisateurs as $resultat)
+{
+	if( $_SESSION["utilisateur"]["id"] != $resultat["ID_UTILISATEUR"])
+	{
+		$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
+
+		echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $resultat["NOM_UTILISATEUR"] . ' ' . $resultat["PRENOM_UTILISATEUR"] . '<span class="caret"></span></a>';
+
+		echo '<ul class="dropdown-menu" role="menu">';
+
+		echo '<li><strong style="margin-left: 1vw">';
+
+		if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
+		{
+			echo "Non Renseigné";
+		}
+		else
+		{
+			$instrument = $Instrument->getInstrumentParId($idInstrument[0]["ID_INSTRUMENT"]);
+			echo $instrument[0]["libellé"];
+
+		}
+		echo '</strong></li>';
+		
+		echo '<li><a href="mailto:' . $resultat["EMAIL"] . '">Envoyer un mail</a></li>';
+
+		echo '<li><a href="index.php?url=profil&amp;id=' . $resultat["ID_UTILISATEUR"] . '">Voir profil</a></li>';
+
+		if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
+		{
+			echo '<li class="divider"></li>';
+		    
+		    echo '<li><a href="index.php?url=interfaceGroupe&amp;idUtilisateur=' . $resultat['ID_UTILISATEUR'] . '&amp;idGroupe=' . $nomGroupe[0]["ID_GROUPE"] . '">Exclure du groupe</a></li>';
+		}
+
+		echo '</ul>';
+
+		echo '</li>';
+	}
+}
 
 
+?>	   
+<div>
+	  </ul>
+	</div>
+
+
+
+	<div class="wrapper" style="margin-left: 11vw">
 
 
 
@@ -32,7 +119,7 @@
 					<center><h1> Bienvenue dans votre groupe <?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></h1></center>
 
 					<!-- content -->
-					<div class="row">
+					<div style="margin-top:4vh" class="row">
 
 						<!-- main col left -->
 						<div class="col-sm-5">
@@ -90,45 +177,6 @@
 							</div>
 
 
-							<div class="panel panel-default">
-								<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Bootstrap Examples</h4></div>
-								<div class="panel-body">
-									<div class="list-group">
-										<a href="http://bootply.com/tagged/modal" class="list-group-item">Modal / Dialog</a>
-										<a href="http://bootply.com/tagged/datetime" class="list-group-item">Datetime Examples</a>
-										<a href="http://bootply.com/tagged/datatable" class="list-group-item">Data Grids</a>
-									</div>
-								</div>
-							</div>
-
-							<div class="well">
-								<form class="form-horizontal" role="form">
-									<h4>What's New</h4>
-									<div class="form-group" style="padding:14px;">
-										<textarea class="form-control" placeholder="Update your status"></textarea>
-									</div>
-									<button class="btn btn-primary pull-right" type="button">Post</button><ul class="list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
-								</form>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>More Templates</h4></div>
-								<div class="panel-body">
-									<img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Free @Bootply</a>
-									<div class="clearfix"></div>
-									There a load of new free Bootstrap 3 ready templates at Bootply. All of these templates are free and don't require extensive customization to the Bootstrap baseline.
-									<hr>
-									<ul class="list-unstyled"><li><a href="http://www.bootply.com/templates">Dashboard</a></li><li><a href="http://www.bootply.com/templates">Darkside</a></li><li><a href="http://www.bootply.com/templates">Greenfield</a></li></ul>
-								</div>
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading"><h4>What Is Bootstrap?</h4></div>
-								<div class="panel-body">
-									Bootstrap is front end frameworkto build custom web applications that are fast, responsive &amp; intuitive. It consist of CSS and HTML for typography, forms, buttons, tables, grids, and navigation along with custom-built jQuery plug-ins and support for responsive layouts. With dozens of reusable components for navigation, pagination, labels, alerts etc..                          </div>
-								</div>
-
-
 
 							</div>
 
@@ -147,7 +195,6 @@
 												<tr class="filters">
 													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Nom" disabled></th>
 													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Prenom" disabled></th>
-													<th class="col-lg-4"><input type="text" class="form-control" placeholder="Mail" disabled></th>
 													<th class="col-lg-3"><input type="text" class="form-control"  placeholder="Instrument" disabled></th>
 													<th class="col-lg-2"><input type="text" class="form-control "  placeholder="Editer" disabled></th>
 
@@ -175,12 +222,6 @@
 													echo '<td>';
 
 													echo $resultat["PRENOM_UTILISATEUR"];
-
-													echo '</td>';
-
-													echo '<td>';
-
-													echo $resultat["EMAIL"];
 
 													echo '</td>';
 
@@ -321,92 +362,6 @@
 
 									</div>
 								</div>
-
-								<div class="well">
-									<form class="form">
-										<h4>Sign-up</h4>
-										<div class="input-group text-center">
-											<input type="text" class="form-control input-lg" placeholder="Enter your email address">
-											<span class="input-group-btn"><button class="btn btn-lg btn-primary" type="button">OK</button></span>
-										</div>
-									</form>
-								</div>
-
-
-								<div class="panel panel-default">
-									<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Stackoverflow</h4></div>
-									<div class="panel-body">
-										<img src="//placehold.it/150x150" class="img-circle pull-right"> <a href="#">Keyword: Bootstrap</a>
-										<div class="clearfix"></div>
-										<hr>
-
-										<p>If you're looking for help with Bootstrap code, the <code>twitter-bootstrap</code> tag at <a href="http://stackoverflow.com/questions/tagged/twitter-bootstrap">Stackoverflow</a> is a good place to find answers.</p>
-
-										<hr>
-										<form>
-											<div class="input-group">
-												<div class="input-group-btn">
-													<button class="btn btn-default">+1</button><button class="btn btn-default"><i class="glyphicon glyphicon-share"></i></button>
-												</div>
-												<input type="text" class="form-control" placeholder="Add a comment..">
-											</div>
-										</form>
-
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-heading"><a href="#" class="pull-right">View all</a> <h4>Portlet Heading</h4></div>
-									<div class="panel-body">
-										<ul class="list-group">
-											<li class="list-group-item">Modals</li>
-											<li class="list-group-item">Sliders / Carousel</li>
-											<li class="list-group-item">Thumbnails</li>
-										</ul>
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-thumbnail"><img src="/assets/example/bg_4.jpg" class="img-responsive"></div>
-									<div class="panel-body">
-										<p class="lead">Social Good</p>
-										<p>1,200 Followers, 83 Posts</p>
-
-										<p>
-											<img src="https://lh6.googleusercontent.com/-5cTTMHjjnzs/AAAAAAAAAAI/AAAAAAAAAFk/vgza68M4p2s/s28-c-k-no/photo.jpg" width="28px" height="28px">
-											<img src="https://lh4.googleusercontent.com/-6aFMDiaLg5M/AAAAAAAAAAI/AAAAAAAABdM/XjnG8z60Ug0/s28-c-k-no/photo.jpg" width="28px" height="28px">
-											<img src="https://lh4.googleusercontent.com/-9Yw2jNffJlE/AAAAAAAAAAI/AAAAAAAAAAA/u3WcFXvK-g8/s28-c-k-no/photo.jpg" width="28px" height="28px">
-										</p>
-									</div>
-								</div>
-
-							</div>
-						</div><!--/row-->
-
-						<div class="row">
-							<div class="col-sm-6">
-								<a href="#">Twitter</a> <small class="text-muted">|</small> <a href="#">Facebook</a> <small class="text-muted">|</small> <a href="#">Google+</a>
-							</div>
-						</div>
-
-						<div class="row" id="footer">
-							<div class="col-sm-6">
-
-							</div>
-							<div class="col-sm-6">
-								<p>
-									<a href="#" class="pull-right">©Copyright 2013</a>
-								</p>
-							</div>
-						</div>
-
-						<hr>
-
-						<h4 class="text-center">
-							<a href="http://bootply.com/96266" target="ext">Download this Template @Bootply</a>
-						</h4>
-
-						<hr>
 
 
 					</div><!-- /col-9 -->

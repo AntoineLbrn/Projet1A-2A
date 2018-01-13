@@ -66,7 +66,7 @@ class Groupe
 			}
 
 			function getNomGroupe($idGroupe){
-				$sql = "SELECT NOM_GROUPE FROM GROUPE where ID_GROUPE = " . $idGroupe;
+				$sql = "SELECT NOM_GROUPE,ID_GROUPE FROM GROUPE where ID_GROUPE = " . $idGroupe;
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();
@@ -109,6 +109,12 @@ class Groupe
 				}else{
 					return 0;
 				}
+			}
+			function retirerDuGroupe($idUtilisateur,$idGroupe)
+			{
+				$sql = "DELETE FROM APPARTIENT where ID_GROUPE = $idGroupe and ID_UTILISATEUR=$idUtilisateur";
+				$query = $this->db->prepare($sql);
+				$query->execute();
 			}
 		}
 ?>

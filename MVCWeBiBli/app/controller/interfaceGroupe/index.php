@@ -41,6 +41,16 @@ $Genre = new Genre();
 $chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
 
 
+if (isset($_GET["idUtilisateur"]))
+{
+	if ($_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"])
+	{
+		$Groupe->retirerDuGroupe($_GET["idUtilisateur"],$_GET["idGroupe"]);
+		header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
+		exit;
+	}
+}
+
 
 
 //var_dump($_SESSION["utilisateur"]["id"]);
