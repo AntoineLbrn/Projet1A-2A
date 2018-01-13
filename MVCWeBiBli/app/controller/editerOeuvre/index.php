@@ -26,15 +26,38 @@ $allGenre = $Genre->getAllGenre();
 
 if(isset($_POST['submit']))
 {
-	$dateUpdate = date("Y-m-d", strtotime( $_POST['date']));
-	$genre = $Genre->getGenre($_POST['choixGenre']);
-	
 
-	$nouvelleOeuvre = $Oeuvre->updateOeuvre($_GET['idOeuvre'], $_POST['nomOeuvre'], $_POST['choixGenre'], $dateUpdate);
+	if (isDate($_POST['date']))
+	{
+		
+		$dateUpdate = str_replace('/', '-',  $_POST['date']);
+		$dateUpdate = date("Y-m-d", strtotime($dateUpdate));
+		$genre = $Genre->getGenre($_POST['choixGenre']);
+
+		
+
+		$nouvelleOeuvre = $Oeuvre->updateOeuvre($_GET['idOeuvre'], $_POST['nomOeuvre'], $_POST['choixGenre'], $dateUpdate);
+
+	}
+	else
+	{
+		$err = "not tthat good";
+	}
+
+
+	
 	
 	
 
 	//echo ('<script> window.location.href = "index.php?url=interfaceGroupe&idGroupe=' . $_GET["idGroupe"] . '" </script>');
+}
+
+function isDate($string) {
+	$matches = array();
+	$pattern = '/^([0-9]{1,2})\\/([0-9]{1,2})\\/([0-9]{4})$/';
+	if (!preg_match($pattern, $string, $matches)) return false;
+	if (!checkdate($matches[2], $matches[1], $matches[3])) return false;
+	return true;
 }
 
 

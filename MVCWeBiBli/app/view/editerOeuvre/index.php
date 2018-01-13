@@ -74,6 +74,16 @@
 
 						</tbody>
 					</table>
+
+					<?php if (isset($err))
+					{
+					?>
+						<div class="alert alert-danger" style="margin-top: 5px;">
+														<?php echo '<strong>Attention!</strong> ' . $err ?>
+						</div>
+					<?php	
+					}
+					?>
 					
 					<br><br>
 					<input type="submit" name ="submit" class="btn btn-primary"> 
