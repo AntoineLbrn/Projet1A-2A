@@ -52,7 +52,7 @@ class Appartient
 
 	function getChefOrchestreParIdGroupe($idGroupe)
 	{
-		$sql =  "SELECT * from utilisateur where ID_UTILISATEUR in ( SELECT `ID_UTILISATEUR` FROM `appartient` WHERE `RANG` = 2 AND `ID_GROUPE`= " . $idGroupe . ")";
+		$sql =  "SELECT * from utilisateur where ID_UTILISATEUR in ( SELECT `ID_UTILISATEUR` FROM `appartient` WHERE `RANG` = 1 AND `ID_GROUPE`= " . $idGroupe . ")";
 
 		$query = $this->db->prepare($sql);
 		$query->execute();
