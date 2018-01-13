@@ -6,11 +6,11 @@ require_once (APP . 'app/model/Oeuvre.php');
 
 $Post = new Post();
 
-if ( isset($_GET['id']))
+if ( isset($_POST['delete']) )
 {
 	echo '<br><br><br><br><br><br>';
-	var_dump($_GET['id']);
-	$supprimerOeuvre = $Post->supprimerOeuvreInventaire($_GET['id']);
+	var_dump($_POST['delete']);
+	//$supprimerOeuvre = $Post->supprimerOeuvreInventaire($_GET['id']);
 }
 
 //var_dump($_GET['id']);

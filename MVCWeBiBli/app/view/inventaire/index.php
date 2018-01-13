@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="css/styleCarrousel.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  
 </head>
 <body>
 
@@ -89,6 +90,7 @@
 
   </div>
 
+   <form method="post" action="">
 
      <table class="table" style="margin-top: 5vh;">
                 <thead>
@@ -96,6 +98,7 @@
                         <th><input type="text" class="form-control" placeholder="Titre" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Genre" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Date" disabled></th>
+                        <th><input type="text" class="form-control" placeholder="Editer" disabled></th>
                         <th><input type="text" class="form-control" placeholder="Supprimer" disabled></th>
                        
 
@@ -129,7 +132,13 @@
 
                     echo '<td class="col-lg-1">';
 
-                    echo '<a href="index.php?url=inventaire&amp;id=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-remove"></span></a>';
+                    echo '<center><a href="index.php?url=inventaire&amp;id=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-pencil"></span></a></center>';
+
+                    echo '</td>';
+
+                     echo '<td class="col-lg-1">';
+
+                    echo '<center><button type="submit" class="btn btn-primary" name=\'delete\' value=" ' . $resultat['id_oeuvre'] . '"><i class="glyphicon glyphicon-remove"></i></button></center>';
 
                     echo '</td>';
 

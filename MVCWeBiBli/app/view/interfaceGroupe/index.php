@@ -240,9 +240,10 @@
 										<table class="table">
 											<thead>
 												<tr class="filters">
-													<th><input type="text" class="form-control" placeholder="Titre" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Genre" disabled></th>
-													<th><input type="text" class="form-control" placeholder="Télécharger" disabled></th>
+													<th class="col-lg-4"><input type="text" class="form-control" placeholder="Titre" disabled></th>
+													<th class="col-lg-4"><input type="text" class="form-control" placeholder="Genre" disabled></th>
+													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Aperçu" disabled></th>
+													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Télécharger" disabled></th>
 												</tr>
 											</thead>
 											<tbody>
@@ -279,7 +280,13 @@
 
 													echo '<td>';
 
-													echo "<a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."'> ";
+													echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $oeuvre[0]["URL"] ."'></center>";
+
+													echo '</td>';
+
+													echo '<td>';
+
+													echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."' download></center>";
 
 													echo '</td>';
 
