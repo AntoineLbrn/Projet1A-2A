@@ -273,7 +273,7 @@ foreach ($Utilisateurs as $resultat)
 								</div>
 
 								<div class="panel panel-default">
-									<div class="panel-heading"><a href="index.php?url=inventaire" class="pull-right">View all</a> <h4>Oeuvres</h4></div>
+									<div class="panel-heading"><a href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]["ID_GROUPE"]?>" class="pull-right">Ajouter une oeuvre</a> <h4>Oeuvres</h4></div>
 									<div class="panel-body">
 
 
