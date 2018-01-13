@@ -16,14 +16,26 @@
     <form method="post" action="" enctype="multipart/form-data">
         <div class="full col-sm-7">
 	    	<select class="form-control" name="groupe" id="selectGroupe">
-	        	<option value="" selected>Groupe</option>
+	        	<option value="">Groupe</option>
 	        	<?php
 	        	foreach ($groupe as $value)
 	        	{
-	        		echo ('<option value = "' . $value["ID_GROUPE"] . '">' . $value["NOM_GROUPE"] . '</option>' );
+                   
+
+	        		echo ('<option value = "' . $value["ID_GROUPE"] . '"');
+                     if (isset($_GET["groupe"]))
+                     {
+                        if ($_GET["groupe"] == $value["ID_GROUPE"])
+                        {
+                            echo ('selected');
+                        }
+                     }    
+                        echo ('>' . $value["NOM_GROUPE"] . '</option>' );
 	        	}
 	        	?>
 	        </select>
+            <a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l'ajouter à votre inventaire, laissez le menu à 'groupe' ">Un groupe ?</a>
+
 		</div>
 		<div style="margin-top : 0%" class="full col-sm-7">
 			<select id="selectGenre" name ="genre" onclick="remet()" class="form-control" style="display:inline;">
@@ -120,4 +132,10 @@ $(document).ready(function() {
             });
         });
     });
+
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
 </script>
