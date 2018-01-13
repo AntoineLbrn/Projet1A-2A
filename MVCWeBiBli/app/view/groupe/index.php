@@ -40,7 +40,6 @@
                         foreach($groupe as $value){?>
                             <form method="post" action="index.php?url=groupe&amp;modifiergroupe=1">
                             <tr class="ligne" style="cursor:pointer;background-color: white;">
-                                <?php if($value['ID_UTILISATEUR']==$_SESSION["utilisateur"]["id"]){ ?>
                                             <td><a href="pageGroupe/index.php?<?php echo $value['ID_GROUPE']?>"><input name="nom" type="hidden" value="<?php echo $value["NOM_GROUPE"] ?>"><?php echo $value["NOM_GROUPE"] ?></a></td>
                                             <td><?php echo $value["NOM_UTILISATEUR"] ?></td>
                                             <?php
@@ -83,7 +82,6 @@
                                                     <td></td>
                                                     <td></td>
                                                     <?php }?>
-                                    <?php } ?>
                             <?php } ?>
                         </a>
                                 </tr>

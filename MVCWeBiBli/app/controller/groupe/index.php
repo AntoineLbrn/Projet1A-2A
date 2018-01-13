@@ -33,7 +33,7 @@
 		$Groupe->rejoindreGroupe($_POST["nom"]);
 	}
 	if(isset($_GET["creegroupe1"])){
-		$Groupe->ajouterGroupe($_POST["nom"],$_POST["mdp"],$_POST["statut"]);
+		$message[] = $Groupe->ajouterGroupe($_POST["nom"],$_POST["mdp"],$_POST["statut"]);
 		$groupe = getAllGroupe();
 	}
 	if(isset($_GET["modifiergroupe"])){

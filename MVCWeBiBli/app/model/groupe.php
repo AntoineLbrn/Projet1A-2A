@@ -23,7 +23,7 @@ class Groupe
 			}
 			function getAllGroupe()
 			{
-				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where ID_GROUPE>0";
+				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where RANG = 1 AND ID_GROUPE>0 AND ID_GROUPE in (select ID_GROUPE from APPARTIENT where ID_UTILISATEUR = ".$_SESSION["utilisateur"]["id"].")";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();
@@ -32,13 +32,17 @@ class Groupe
 			{
 				$max = $this->getMaxId();
 				$max = $max["MAX"];
+				$dispo = $this->existe($nom);
+				if($dispo == 0){
 				$sql1 = "INSERT INTO `GROUPE` (`ID_GROUPE`,`NOM_GROUPE`, `mot_de_passe`,`STATUT_GROUPE`) VALUES ('$max','$nom','$mdp','$statut')";
 				$sql2 = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`) VALUES ('$max','".$_SESSION["utilisateur"]["id"]."',1)";
 				$query1 = $this->db->prepare($sql1);
 				$query2 = $this->db->prepare($sql2);
 				$query1->execute();
 				$query2->execute();
-				return 1;
+				}else{
+					return "Le nom de groupe existe deja";
+				}
 			}
 			function getMaxId(){
 				$sql = "SELECT MAX(ID_GROUPE)+1 as MAX FROM GROUPE";
@@ -94,6 +98,17 @@ class Groupe
 				$sql = "DELETE FROM APPARTIENT where ID_GROUPE = $ID";
 				$query = $this->db->prepare($sql);
 				$query->execute();
+			}
+			function existe($nom){
+				$sql = "SELECT * FROM GROUPE where NOM_GROUPE = UPPER('".$nom."')" ;
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				$result = $query->fetchAll();
+				if($query->rowCount()>0){
+					return 1;
+				}else{
+					return 0;
+				}
 			}
 		}
 ?>
