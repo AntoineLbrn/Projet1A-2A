@@ -8,9 +8,8 @@ $Post = new Post();
 
 if ( isset($_POST['delete']) )
 {
-	echo '<br><br><br><br><br><br>';
-	var_dump($_POST['delete']);
-	//$supprimerOeuvre = $Post->supprimerOeuvreInventaire($_GET['id']);
+	
+	$supprimerOeuvre = $Post->supprimerOeuvreInventaire($_POST['delete']);
 }
 
 //var_dump($_GET['id']);

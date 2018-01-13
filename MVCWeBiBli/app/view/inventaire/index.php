@@ -8,7 +8,7 @@
   <link rel="stylesheet" type="text/css" href="css/styleCarrousel.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
 </head>
 <body>
 
@@ -126,13 +126,13 @@
 
                     echo '<td>';
 
-                    echo $resultat["date"];
+                    echo '<p data-editable>' . $resultat["date"] . '</p>';
 
                     echo '</td>';
 
                     echo '<td class="col-lg-1">';
 
-                    echo '<center><a href="index.php?url=inventaire&amp;id=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-pencil"></span></a></center>';
+                    echo '<center><a href="index.php?url=editerOeuvre&amp;idOeuvre=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-pencil"></span></a></center>';
 
                     echo '</td>';
 
@@ -154,4 +154,29 @@
 </div></center>
 
 </body>
+
+<script>
+$('body').on('click', '[data-editable]', function(){
+  
+  var $el = $(this);
+              
+  var $input = $('<input/>').val( $el.text() );
+  $el.replaceWith( $input );
+  
+  var save = function(){
+    var $p = $('<p data-editable />').text( $input.val() );
+    $input.replaceWith( $p );
+  };
+  
+  /**
+    We're defining the callback with `one`, because we know that
+    the element will be gone just after that, and we don't want 
+    any callbacks leftovers take memory. 
+    Next time `p` turns into `input` this single callback 
+    will be applied again.
+  */
+  $input.one('blur', save).focus();
+  
+});
+</script>
 </html>
