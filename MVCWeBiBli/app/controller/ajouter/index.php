@@ -97,7 +97,7 @@
 					  {
 					 	$Post->setPost($_SESSION["utilisateur"]["id"],$_POST["groupe"],$idO["ID_OEUVRE"]);	
 					  }
-					  $Post->setPost($_SESSION["utilisateur"]["id"],$_POST["groupe"],$idO["ID_OEUVRE"]);
+					  $Post->setPost($_SESSION["utilisateur"]["id"],0,$idO["ID_OEUVRE"]);
 			     }
 			     else //Sinon (la fonction renvoie FALSE).
 			     {
