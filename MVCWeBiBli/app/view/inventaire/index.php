@@ -57,7 +57,7 @@
           }
 
           
-        echo '<embed src="upload/' . $oeuvre["URL"] . '" style="width:100%; height:50%;" type=\'application/pdf\'>'; ?>
+        echo '<embed src="upload/' . $oeuvre["URL"] . '" style="width:100%; height:50%;">'; ?>
       
        <!-- <?php echo '<img src="upload/' . $oeuvres[0]["URL"] . '" alt="Los Angeles" style="width:100%;"> '?>-->
         <div class="carousel-caption">
