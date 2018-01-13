@@ -23,7 +23,7 @@ class Groupe
 			}
 			function getAllGroupe()
 			{
-				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where RANG = 1 AND ID_GROUPE>0 AND ID_GROUPE in (select ID_GROUPE from APPARTIENT where ID_UTILISATEUR = ".$_SESSION["utilisateur"]["id"].")";
+				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where RANG = 1 AND ID_GROUPE in (select ID_GROUPE from APPARTIENT where ID_UTILISATEUR = ".$_SESSION["utilisateur"]["id"].")";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();

@@ -9,6 +9,8 @@
 	$Groupe = new Groupe();
 	$groupe = $Groupe->getAllGroupe();
 
+	
+
 	$Genre = new Genre();
 	$genre = $Genre->getAllGenre();
 

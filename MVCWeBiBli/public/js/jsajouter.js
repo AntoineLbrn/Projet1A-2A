@@ -41,13 +41,13 @@ function change()
 function afficheGenre()
 {
 	document.getElementById('bouton+').style.display="none";		
-	document.getElementById('nouveauGenre').style.display="inline";
+	document.getElementById('nouveauGenre').style.display="block";
 	document.getElementById('selectGenre').selectedIndex = 0;
 
 }
 function remet()
 {
-		document.getElementById('bouton+').style.display="inline";		
+		document.getElementById('bouton+').style.display="block";		
 		document.getElementById('nouveauGenre').style.display="none";		
 }
 function recherche()
