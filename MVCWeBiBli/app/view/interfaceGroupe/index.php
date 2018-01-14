@@ -3,6 +3,7 @@
 
 <head>
 	<meta charset="utf-8">
+	<script src="js/jsTri.js"></script>
 	
 	<style>
 
@@ -17,27 +18,27 @@
 			z-index:2;
 		}
 		.navbar-fixed-left {
-		  width: 11vw;
-		  position: fixed;
-		  border-radius: 0;
-		  height: 100%;
-		  margin-top: 3vh;
-		  margin-left:-1.2vw;
+			width: 11vw;
+			position: fixed;
+			border-radius: 0;
+			height: 100%;
+			margin-top: 3vh;
+			margin-left:-1.2vw;
 		}
 
 		.navbar-fixed-left .navbar-nav > li {
-		  float: none;  /* Cancel default li float: left */
-		  width: 139px;
+			float: none;  /* Cancel default li float: left */
+			width: 139px;
 		}
 
 		.navbar-fixed-left + .container {
-		  padding-left: 160px;
+			padding-left: 160px;
 		}
 
 		/* On using dropdown menu (To right shift popuped) */
 		.navbar-fixed-left .navbar-nav > li > .dropdown-menu {
-		  margin-top: -50px;
-		  margin-left: 140px;
+			margin-top: -50px;
+			margin-left: 140px;
 		}
 		.dropdown
 		{
@@ -48,69 +49,68 @@
 	<title></title>
 </head>
 <body>
-			<div class="row row-offcanvas row-offcanvas-left">
+	<div class="row row-offcanvas row-offcanvas-left">
+		<div class="navbar navbar-inverse navbar-fixed-left">
+			<span class="navbar-brand" ><?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></span>
+			<ul class="nav navbar-nav">
+				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $chefOrchestre[0]["NOM_UTILISATEUR"] . ' ' . $chefOrchestre[0]["PRENOM_UTILISATEUR"] ; ?> <span class="caret"></span></a>
+					<ul class="dropdown-menu" role="menu">
+						<li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
+						<li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
+						<li><a href="index.php?url=profil&amp;id <?php $chefOrchestre[0]['ID_UTILISATEUR']?>">Voir profil</a></li>
+					</ul>
+				</li>
+				<?php
+				foreach ($Utilisateurs as $resultat)
+				{
+					if( $_SESSION["utilisateur"]["id"] != $resultat["ID_UTILISATEUR"])
+					{
+						$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
 
-	<div class="navbar navbar-inverse navbar-fixed-left">
-	<span class="navbar-brand" ><?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></span>
-	  <ul class="nav navbar-nav">
-	   <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $chefOrchestre[0]["NOM_UTILISATEUR"] . ' ' . $chefOrchestre[0]["PRENOM_UTILISATEUR"] ; ?> <span class="caret"></span></a>
-	     <ul class="dropdown-menu" role="menu">
-	      <li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
-	      <li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
-	      <li><a href="index.php?url=profil&amp;id=<?php echo $chefOrchestre[0]['ID_UTILISATEUR'];?>">Voir profil</a></li>
-	     </ul>
-	    </li>
-	   <?php
-foreach ($Utilisateurs as $resultat)
-{
-	if( $_SESSION["utilisateur"]["id"] != $resultat["ID_UTILISATEUR"])
-	{
-		$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
+						echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $resultat["NOM_UTILISATEUR"] . ' ' . $resultat["PRENOM_UTILISATEUR"] . '<span class="caret"></span></a>';
 
-		echo '<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">' . $resultat["NOM_UTILISATEUR"] . ' ' . $resultat["PRENOM_UTILISATEUR"] . '<span class="caret"></span></a>';
+						echo '<ul class="dropdown-menu" role="menu">';
 
-		echo '<ul class="dropdown-menu" role="menu">';
+						echo '<li><strong style="margin-left: 1vw">';
 
-		echo '<li><strong style="margin-left: 1vw">';
+						if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
+						{
+							echo "Non Renseigné";
+						}
+						else
+						{
+							$instrument = $Instrument->getInstrumentParId($idInstrument[0]["ID_INSTRUMENT"]);
+							echo $instrument[0]["libellé"];
 
-		if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
-		{
-			echo "Non Renseigné";
-		}
-		else
-		{
-			$instrument = $Instrument->getInstrumentParId($idInstrument[0]["ID_INSTRUMENT"]);
-			echo $instrument[0]["libellé"];
+						}
+						echo '</strong></li>';
 
-		}
-		echo '</strong></li>';
-		
-		echo '<li><a href="mailto:' . $resultat["EMAIL"] . '">Envoyer un mail</a></li>';
+						echo '<li><a href="mailto:' . $resultat["EMAIL"] . '">Envoyer un mail</a></li>';
 
-		echo '<li><a href="index.php?url=profil&amp;id=' . $resultat["ID_UTILISATEUR"] . '">Voir profil</a></li>';
+						echo '<li><a href="index.php?url=profil&amp;id=' . $resultat["ID_UTILISATEUR"] . '">Voir profil</a></li>';
 
-		if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
-		{
-			echo '<li class="divider"></li>';
-		    
-		    echo '<li><a href="index.php?url=interfaceGroupe&amp;idUtilisateur=' . $resultat['ID_UTILISATEUR'] . '&amp;idGroupe=' . $nomGroupe[0]["ID_GROUPE"] . '">Exclure du groupe</a></li>';
-		}
+						if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
+						{
+							echo '<li class="divider"></li>';
 
-		echo '</ul>';
+							echo '<li><a href="index.php?url=interfaceGroupe&amp;idUtilisateur=' . $resultat['ID_UTILISATEUR'] . '&amp;idGroupe=' . $nomGroupe[0]["ID_GROUPE"] . '">Exclure du groupe</a></li>';
+						}
 
-		echo '</li>';
-	}
-}
+						echo '</ul>';
 
-
-?>	   
-<div>
-	  </ul>
-	</div>
+						echo '</li>';
+					}
+				}
 
 
+				?>	   
+				<div>
+				</ul>
+			</div>
 
-	<div class="wrapper" style="margin-left: 11vw">
+
+
+			<div class="wrapper" style="margin-left: 11vw">
 
 
 
@@ -178,159 +178,152 @@ foreach ($Utilisateurs as $resultat)
 
 
 
-							</div>
+						</div>
 
-							<!-- main col right -->
-							<div class="col-sm-7">
-
-
+						<!-- main col right -->
+						<div class="col-sm-7">
 								<div class="panel panel-default">
 									<div class="panel-heading"><a href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE'];?>&amp;ajouter=1" class="pull-right">Ajouter un utilisateur au groupe</a> <h4>Utilisateurs</h4></div>
 									<div class="panel-body">
 
+									<table class="table table-hover" id="myTable">
+										<thead>
+											<tr class="filters">
+												<th class="col-lg-2" onclick="sortTable(0)">Nom</th>
+												<th class="col-lg-2" onclick="sortTable(1)">Prenom</th>
+												<th class="col-lg-3" onclick="sortTable(2)">Instrument</th>
+												<th class="col-lg-2">Editer</th>
+											</tr>
+										</thead>
+										<tbody>
 
+											<?php
 
-										<table class="table">
-											<thead>
-												<tr class="filters">
-													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Nom" disabled></th>
-													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Prenom" disabled></th>
-													<th class="col-lg-3"><input type="text" class="form-control"  placeholder="Instrument" disabled></th>
-													<th class="col-lg-2"><input type="text" class="form-control "  placeholder="Editer" disabled></th>
+											foreach ($Utilisateurs as $resultat)
+											{
 
-												</tr>
-											</thead>
-											<tbody>
+												$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
 
-												<?php
+												echo '<tr>';
 
+												echo '<td>';
 
+												echo $resultat["NOM_UTILISATEUR"];
 
+												echo '</td>';
 
-												foreach ($Utilisateurs as $resultat)
+												echo '<td>';
+
+												echo $resultat["PRENOM_UTILISATEUR"];
+
+												echo '</td>';
+
+												echo '<td>';
+
+												if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
 												{
-
-													$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
-
-													echo '<tr>';
-
-													echo '<td>';
-
-													echo $resultat["NOM_UTILISATEUR"];
-
-													echo '</td>';
-
-													echo '<td>';
-
-													echo $resultat["PRENOM_UTILISATEUR"];
-
-													echo '</td>';
-
-													echo '<td>';
-
-													if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
-													{
-														echo "Non Renseigné";
-													}
-													else
-													{
-														$instrument = $Instrument->getInstrumentParId($idInstrument[0]["ID_INSTRUMENT"]);
-														echo $instrument[0]["libellé"];
-
-													}
-
-
-
-													echo '</td>';
-
-													echo '<td>';
-
-													if( $_SESSION["utilisateur"]["id"] == $resultat["ID_UTILISATEUR"])
-													{
-														echo '<form method="post" action="" enctype="multipart/form-data">';
-
-														echo '<center><span class="input-group-btn"><button class="btn btn-lg btn-primary" name="ajouterInstu" type="submit"><span class="glyphicon glyphicon-pencil"></span></button></span></center>';
-
-														echo '</form>';
-													}
-
-
-
-													echo '</td>';
-
-
-													echo '</tr>';   
+													echo "Non Renseigné";
+												}
+												else
+												{
+													$instrument = $Instrument->getInstrumentParId($idInstrument[0]["ID_INSTRUMENT"]);
+													echo $instrument[0]["libellé"];
 
 												}
 
 
-												?>
 
-											</tbody>
-										</table>
+												echo '</td>';
 
+												echo '<td>';
 
-									</div>
-								</div>
-
-								<div class="panel panel-default">
-									<div class="panel-heading"><a href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]["ID_GROUPE"]?>" class="pull-right">Ajouter une oeuvre</a> <h4>Oeuvres</h4></div>
-									<div class="panel-body">
-
-
-
-										<table class="table">
-											<thead>
-												<tr class="filters">
-													<th class="col-lg-4"><input type="text" class="form-control" placeholder="Titre" disabled></th>
-													<th class="col-lg-4"><input type="text" class="form-control" placeholder="Genre" disabled></th>
-													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Aperçu" disabled></th>
-													<th class="col-lg-2"><input type="text" class="form-control" placeholder="Télécharger" disabled></th>
-												</tr>
-											</thead>
-											<tbody>
-
-												<?php
-
-
-
-
-												foreach ($Oeuvres as $resultat)
+												if( $_SESSION["utilisateur"]["id"] == $resultat["ID_UTILISATEUR"])
 												{
+													echo '<form method="post" action="" enctype="multipart/form-data">';
 
-													$oeuvre = $Oeuvre->getOeuvresAvecID($resultat["ID_OEUVRE"]);
+													echo '<center><span class="input-group-btn"><button class="btn btn-lg btn-primary" name="ajouterInstu" type="submit"><span class="glyphicon glyphicon-pencil"></span></button></span></center>';
 
-													$utilisateur = $Utilisateur->getUtilisateurParId($resultat["ID_UTILISATEUR"]);
+													echo '</form>';
+												}
 
-													$libelleGenre = $Genre->getGenre($oeuvre[0]["ID_genre"]);
 
-													
 
-													echo '<tr>';
+												echo '</td>';
 
-													echo '<td>';
 
-													echo $oeuvre[0]["NOM"];
+												echo '</tr>';   
 
-													echo '</td>';
+											}
 
-													echo '<td>';
 
-													echo $libelleGenre["libellé"];
+											?>
 
-													echo '</td>';
+										</tbody>
+									</table>
 
-													echo '<td>';
 
-													echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $oeuvre[0]["URL"] ."'></center>";
+								</div>
+							</div>
 
-													echo '</td>';
+							<div class="panel panel-default">
+								<div class="panel-heading"><a href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]["ID_GROUPE"]?>" class="pull-right">Ajouter une oeuvre</a> <h4>Oeuvres</h4></div>
+								<div class="panel-body">
 
-													echo '<td>';
 
-													echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."' download></center>";
 
-													echo '</td>';
+									<table class="table table-hover" id="myTable1">
+										<thead>
+											<tr class="filters">
+												<th class="col-lg-2" onclick="sortTable1(0)">Titre</th>
+												<th class="col-lg-2" onclick="sortTable1(1)">Genre</th>
+												<th class="col-lg-2">Aperçu</th>
+												<th class="col-lg-2">Télécharger</th>
+
+											</tr>
+										</thead>
+										<tbody>
+
+											<?php
+
+
+
+
+											foreach ($Oeuvres as $resultat)
+											{
+
+												$oeuvre = $Oeuvre->getOeuvresAvecID($resultat["ID_OEUVRE"]);
+
+												$utilisateur = $Utilisateur->getUtilisateurParId($resultat["ID_UTILISATEUR"]);
+
+												$libelleGenre = $Genre->getGenre($oeuvre[0]["ID_genre"]);
+
+
+
+												echo '<tr>';
+
+												echo '<td>';
+
+												echo $oeuvre[0]["NOM"];
+
+												echo '</td>';
+
+												echo '<td>';
+
+												echo $libelleGenre["libellé"];
+
+												echo '</td>';
+
+												echo '<td>';
+
+												echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $oeuvre[0]["URL"] ."'></center>";
+
+												echo '</td>';
+
+												echo '<td>';
+
+												echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."' download></center>";
+
+												echo '</td>';
 
 
 													/*if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
@@ -365,45 +358,45 @@ foreach ($Utilisateurs as $resultat)
 								</div>
 
 
-					</div><!-- /col-9 -->
-				</div><!-- /padding -->
-			</div>
-			<!-- /main -->
-
-		</div>
-	</div>
-</div>
-
-
-<!--post modal-->
-<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-				Update Status
-			</div>
-			<div class="modal-body">
-				<form class="form center-block">
-					<div class="form-group">
-						<textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+							</div><!-- /col-9 -->
+						</div><!-- /padding -->
 					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<div>
-					<button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
-					<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+					<!-- /main -->
+
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</body>
-<script type="text/javascript" src="js/script.js\"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+		<!--post modal-->
+		<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+						Update Status
+					</div>
+					<div class="modal-body">
+						<form class="form center-block">
+							<div class="form-group">
+								<textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<div>
+							<button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
+							<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/script.js\"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
-</html>
+	</html>
