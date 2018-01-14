@@ -57,7 +57,7 @@
 	     <ul class="dropdown-menu" role="menu">
 	      <li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
 	      <li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
-	      <li><a href="index.php?url=profil&amp;id <?php $chefOrchestre[0]['ID_UTILISATEUR']?>">Voir profil</a></li>
+	      <li><a href="index.php?url=profil&amp;id=<?php echo $chefOrchestre[0]['ID_UTILISATEUR'];?>">Voir profil</a></li>
 	     </ul>
 	    </li>
 	   <?php
@@ -185,7 +185,7 @@ foreach ($Utilisateurs as $resultat)
 
 
 								<div class="panel panel-default">
-									<div class="panel-heading"><a href="index.php?url=inventaire" class="pull-right">View all</a> <h4>Utilisateurs</h4></div>
+									<div class="panel-heading"><a href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE'];?>&amp;ajouter=1" class="pull-right">Ajouter un utilisateur au groupe</a> <h4>Utilisateurs</h4></div>
 									<div class="panel-body">
 
 
@@ -207,7 +207,8 @@ foreach ($Utilisateurs as $resultat)
 
 
 
-												foreach ($Utilisateurs as $resultat) {
+												foreach ($Utilisateurs as $resultat)
+												{
 
 													$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
 

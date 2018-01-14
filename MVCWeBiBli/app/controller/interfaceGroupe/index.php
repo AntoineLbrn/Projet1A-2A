@@ -8,56 +8,75 @@ require_once (APP . 'app/model/Utilisateur.php');
 require_once (APP . 'app/model/Genre.php');
 require_once (APP . 'app/view/templates/header.php');
 
-$Groupe = new Groupe();
-$nomGroupe = $Groupe->getNomGroupe($_GET["idGroupe"]);
+	$Appartient = new Appartient();
+	$Groupe = new Groupe();
+	$nomGroupe = $Groupe->getNomGroupe($_GET["idGroupe"]);
 
-$Appartient = new Appartient();
-$Utilisateurs = $Appartient->getUtilisateurParIdGroupe($_GET["idGroupe"]);
-
-$Instrument = new Instrument();
-
-$Post= new Post();
-
-$Oeuvres = $Post->getOeuvreAvecIdGroupe($_GET["idGroupe"]);
-
-//var_dump($Oeuvres);
-
-$Oeuvre = new Oeuvre();
-
-$Utilisateur = new Utilisateur();
-
-$allInstruments = $Instrument->getInstruments();
-
-if(isset($_POST['ajouterInstu']))
+if (isset($_GET["ajouter"]))
 {
-header("Location: index.php?url=ajouterInstrumentGroupe&idGroupe=" . $_GET["idGroupe"]);
-exit;
+	$Utilisateur = $Appartient->getUtlisateurPasDansGroupe($_GET["idGroupe"]);
+	require_once(APP . 'app/view/interfaceGroupe/ajouterUtilisateur.php');
 }
-
-$Genre = new Genre();
-
-
-
-$chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
-
-
-if (isset($_GET["idUtilisateur"]))
+else
 {
-	if ($_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"])
+	if (isset($_POST["sub"]))
 	{
-		$Groupe->retirerDuGroupe($_GET["idUtilisateur"],$_GET["idGroupe"]);
-		header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
-		exit;
+		if (isset($_POST["ids"]))
+		{
+			foreach ($_POST["ids"] as $id)
+			{
+				$Appartient->AjouterUtilisateurAuGroupe($_GET["idGroupe"],$id);
+			}
+		}
 	}
+	$Utilisateurs = $Appartient->getUtilisateurParIdGroupe($_GET["idGroupe"]);
+
+	$Instrument = new Instrument();
+
+	$Post= new Post();
+
+	$Oeuvres = $Post->getOeuvreAvecIdGroupe($_GET["idGroupe"]);
+
+	//var_dump($Oeuvres);
+
+	$Oeuvre = new Oeuvre();
+
+	$Utilisateur = new Utilisateur();
+
+	$allInstruments = $Instrument->getInstruments();
+
+	if(isset($_POST['ajouterInstu']))
+	{
+	header("Location: index.php?url=ajouterInstrumentGroupe&idGroupe=" . $_GET["idGroupe"]);
+	exit;
+	}
+
+	$Genre = new Genre();
+
+
+
+	$chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
+
+
+	if (isset($_GET["idUtilisateur"]))
+	{
+		if ($_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"])
+		{
+			$Groupe->retirerDuGroupe($_GET["idUtilisateur"],$_GET["idGroupe"]);
+			header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
+			exit;
+		}
+	}
+
+
+
+	//var_dump($_SESSION["utilisateur"]["id"]);
+
+	//var_dump($test);
+
+	 //var_dump($idInstrument);
+
+	 require_once (APP . 'app/view/interfaceGroupe/index.php');
+
 }
-
-
-
-//var_dump($_SESSION["utilisateur"]["id"]);
-
-//var_dump($test);
-
- //var_dump($idInstrument);
-
- require_once (APP . 'app/view/interfaceGroupe/index.php');
 ?>
