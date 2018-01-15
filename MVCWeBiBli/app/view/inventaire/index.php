@@ -103,6 +103,7 @@
       <th class="col-lg-2">Télécharger</th>
       <th>Editer</th>
       <th>Supprimer</th>
+      <th>Ajouter</th>
     </tr>
   </thead>
   <tbody>
@@ -152,6 +153,12 @@
       echo '<td class="col-lg-1">';
 
       echo '<center><button type="submit" class="btn btn-primary" name=\'delete\' value=" ' . $resultat['id_oeuvre'] . '"><i class="glyphicon glyphicon-remove"></i></button></center>';
+
+      echo '</td>';
+
+     echo '<td class="col-lg-1">';
+
+      echo '<center><a href="index.php?url=ajouterOeuvreInventaireAuGroupe&amp;idOeuvre=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-plus"></span></a></center>';
 
       echo '</td>';
 
