@@ -16,30 +16,37 @@ class Groupe
 				        }
 				    }
 			function getGroupeRecherche($groupe){
-				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where nom_groupe like '%".$groupe ."%'";
+				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) 
+				join Utilisateur using(ID_UTILISATEUR) where nom_groupe like '%".$groupe ."%'";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();
 			}
 			function getAllGroupe()
 			{
-				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) where RANG = 1 AND ID_GROUPE in (select ID_GROUPE from APPARTIENT where ID_UTILISATEUR = ".$_SESSION["utilisateur"]["id"].")";
+				$sql = "SELECT * FROM GROUPE join APPARTIENT using(ID_GROUPE) join Utilisateur using(ID_UTILISATEUR) 
+				where RANG = 1 AND ID_GROUPE in (select ID_GROUPE from APPARTIENT 
+				where ID_UTILISATEUR = ".$_SESSION["utilisateur"]["id"].")";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();
 			}
 			function ajouterGroupe($nom,$mdp,$statut)
 			{
+				if($mdp == "" && $statut!=0){
+					return "Le champ mot de passe doit etre remplis pour un groupe de ce type";
+				}
 				$max = $this->getMaxId();
 				$max = $max["MAX"];
 				$dispo = $this->existe($nom);
 				if($dispo == 0){
-				$sql1 = "INSERT INTO `GROUPE` (`ID_GROUPE`,`NOM_GROUPE`, `mot_de_passe`,`STATUT_GROUPE`) VALUES ('$max','$nom','$mdp','$statut')";
-				$sql2 = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`) VALUES ('$max','".$_SESSION["utilisateur"]["id"]."',1)";
-				$query1 = $this->db->prepare($sql1);
-				$query2 = $this->db->prepare($sql2);
-				$query1->execute();
-				$query2->execute();
+					$sql1 = "INSERT INTO `GROUPE` (`ID_GROUPE`,`NOM_GROUPE`, `mot_de_passe`,`STATUT_GROUPE`) VALUES ('$max','$nom','$mdp','$statut')";
+					$sql2 = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`) VALUES ('$max','".$_SESSION["utilisateur"]["id"]."',1)";
+					$query1 = $this->db->prepare($sql1);
+					$query2 = $this->db->prepare($sql2);
+					$query1->execute();
+					$query2->execute();
+					return "Groupe Correctement crée";
 				}else{
 					return "Le nom de groupe existe deja";
 				}
@@ -72,7 +79,8 @@ class Groupe
 				return $query->fetchAll();
 			}
 			function modifiergroupe($idGroupe,$nom,$mdp,$statut){
-				$sql = "UPDATE GROUPE set NOM_GROUPE='".$nom."',mot_de_passe='".$mdp."',STATUT_GROUPE='".$statut."' where ID_GROUPE='".$idGroupe."'";
+				$sql = "UPDATE GROUPE set NOM_GROUPE='".$nom."',mot_de_passe='".$mdp."',
+				STATUT_GROUPE='".$statut."' where ID_GROUPE='".$idGroupe."'";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 			}

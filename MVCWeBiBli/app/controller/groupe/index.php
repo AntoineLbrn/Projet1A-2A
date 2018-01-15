@@ -15,7 +15,6 @@
 		}
 	}
 	if(isset($_POST["OK"])){
-			//$groupe = rechercherGroupe($_POST["recherche"]);
 			$groupes = $Groupe->getGroupeARejoindre($_SESSION["utilisateur"]["id"]);
 			$groupe=array();
 			foreach ($groupes as $gr)
