@@ -58,6 +58,8 @@
 				$artisteO = $id;
 			}
 			$Oeuvre = new Oeuvre();
+			$_POST["nomOeuvre"] = htmlspecialchars($_POST["nomOeuvre"]);
+			$_POST["nomOeuvre"] = str_replace("'", "\'", $_POST["nomOeuvre"]);
 			$id = $Oeuvre->verifOeuvre($_POST["nomOeuvre"]);
 			if (!$id==null)
 			{

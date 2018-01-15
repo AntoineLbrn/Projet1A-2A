@@ -189,9 +189,9 @@
 									<table class="table table-hover" id="myTable">
 										<thead>
 											<tr class="filters">
-												<th class="col-lg-2" onclick="sortTable(0)">Nom</th>
-												<th class="col-lg-2" onclick="sortTable(1)">Prenom</th>
-												<th class="col-lg-3" onclick="sortTable(2)">Instrument</th>
+												<th class="col-lg-2" style="cursor:pointer" onclick="sortTable(0)">Nom</th>
+												<th class="col-lg-2" style="cursor:pointer" onclick="sortTable(1)">Prenom</th>
+												<th class="col-lg-3" style="cursor:pointer" onclick="sortTable(2)">Instrument</th>
 												<th class="col-lg-2">Editer</th>
 											</tr>
 										</thead>
@@ -274,8 +274,8 @@
 									<table class="table table-hover" id="myTable1">
 										<thead>
 											<tr class="filters">
-												<th class="col-lg-2" onclick="sortTable1(0)">Titre</th>
-												<th class="col-lg-2" onclick="sortTable1(1)">Genre</th>
+												<th class="col-lg-2" style="cursor:pointer" onclick="sortTable1(0)">Titre</th>
+												<th class="col-lg-2" style="cursor:pointer" onclick="sortTable1(1)">Genre</th>
 												<th class="col-lg-2">Aperçu</th>
 												<th class="col-lg-2">Télécharger</th>
 
