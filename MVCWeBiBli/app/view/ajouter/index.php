@@ -16,6 +16,13 @@
     <h4 style="color:red"><?php if (isset($err)) echo ($err); ?></h4>
     <form method="post" action="" enctype="multipart/form-data">
       <div class="col-lg-8 col-lg-offset-2">
+        <?php 
+        if (isset($_GET["groupe"]))
+        {
+          echo '<input name="groupe"  style="display:none;" value="' . $_GET["groupe"] . '"/>';
+        }
+        else
+        {?>
         <select class="form-control" name="groupe" id="selectGroupe">
           <option value="">Groupe</option>
           <option value="">Inventaire</option>
@@ -34,6 +41,7 @@
             }    
             echo ('>' . $value["NOM_GROUPE"] . '</option>' );
           }
+        }
           ?>
         </select>
 
