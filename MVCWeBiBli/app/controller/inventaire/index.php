@@ -26,6 +26,7 @@ $Genre = new Genre();
 
 $tab= array();
 $i=0;
+
 foreach ($oeuvres as $oeuvre)
 {
 	$genre = $Genre->getGenre($oeuvre["ID_genre"]);
@@ -34,6 +35,7 @@ foreach ($oeuvres as $oeuvre)
  // $tab[$i]["editeur"] = $oeuvre["EDITEUR"];
 	$tab[$i]["date"] = date("d/m/Y", strtotime($oeuvre["DATESORTIE"]));
 	$tab[$i]["genre"] = $genre["libellé"];
+	$tab[$i]["url"] = $oeuvre["URL"];
 	$i=$i + 1;
 }
 
