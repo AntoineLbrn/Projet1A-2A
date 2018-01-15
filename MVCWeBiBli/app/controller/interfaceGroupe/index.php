@@ -54,6 +54,8 @@ else
 
 	$Oeuvres = $Post->getOeuvreAvecIdGroupe($_GET["idGroupe"]);
 
+
+
 	//var_dump($Oeuvres);
 
 	$Oeuvre = new Oeuvre();
@@ -83,6 +85,11 @@ else
 			header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
 			exit;
 		}
+	}
+
+	if (isset($_POST['ajouterInventaire']))
+	{
+		$test = $Post->setPost($_SESSION['utilisateur']['id'],0,$_POST['ajouterInventaire']);
 	}
 
 

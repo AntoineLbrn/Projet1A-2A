@@ -184,9 +184,9 @@
 
 						<!-- main col right -->
 						<div class="col-sm-7">
-								<div class="panel panel-default">
-									<div class="panel-heading"><a href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE'];?>&amp;ajouter=1" class="pull-right">Ajouter un utilisateur au groupe</a> <h4>Utilisateurs</h4></div>
-									<div class="panel-body">
+							<div class="panel panel-default">
+								<div class="panel-heading"><a href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE'];?>&amp;ajouter=1" class="pull-right">Ajouter un utilisateur au groupe</a> <h4>Utilisateurs</h4></div>
+								<div class="panel-body">
 
 									<table class="table table-hover" id="myTable">
 										<thead>
@@ -271,13 +271,13 @@
 								<div class="panel-heading">
 									<div class="pull-right" class="dropdown show">
 										<div class="dropdown">
-										  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										    Ajouter une oeuvre
-										  </button>
-										  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a  style="width:2vw;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;inventaire=1" class="dropdown-item" href="#"> Depuis l'inventaire</a><br>
-										    <a class="dropdown-item" href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>"> Nouvelle Oeuvre</a>
-										  </div>
+											<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+												Ajouter une oeuvre
+											</button>
+											<div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+												<a  style="width:2vw;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;inventaire=1" class="dropdown-item" href="#"> Depuis l'inventaire</a><br>
+												<a class="dropdown-item" href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>"> Nouvelle Oeuvre</a>
+											</div>
 										</div>
 
 									</div>
@@ -286,61 +286,68 @@
 								</div>
 								<div class="panel-body">
 
+									<form method="post" action="">
 
+										<table class="table table-hover" id="myTable1">
+											<thead>
+												<tr class="filters">
+													<th class="col-lg-2" style="cursor:pointer" onclick="sortTable1(0)">Titre</th>
+													<th class="col-lg-2" style="cursor:pointer" onclick="sortTable1(1)">Genre</th>
+													<th class="col-lg-2">Aperçu</th>
+													<th class="col-lg-2">Télécharger</th>
+													<th class="col-lg-2">Ajouter inventaire</th>
 
-									<table class="table table-hover" id="myTable1">
-										<thead>
-											<tr class="filters">
-												<th class="col-lg-2" style="cursor:pointer" onclick="sortTable1(0)">Titre</th>
-												<th class="col-lg-2" style="cursor:pointer" onclick="sortTable1(1)">Genre</th>
-												<th class="col-lg-2">Aperçu</th>
-												<th class="col-lg-2">Télécharger</th>
+												</tr>
+											</thead>
+											<tbody>
 
-											</tr>
-										</thead>
-										<tbody>
-
-											<?php
-
-
-
-
-											foreach ($Oeuvres as $resultat)
-											{
-
-												$oeuvre = $Oeuvre->getOeuvresAvecID($resultat["ID_OEUVRE"]);
-
-												$utilisateur = $Utilisateur->getUtilisateurParId($resultat["ID_UTILISATEUR"]);
-
-												$libelleGenre = $Genre->getGenre($oeuvre[0]["ID_genre"]);
+												<?php
 
 
 
-												echo '<tr>';
 
-												echo '<td>';
+												foreach ($Oeuvres as $resultat)
+												{
 
-												echo $oeuvre[0]["NOM"];
+													$oeuvre = $Oeuvre->getOeuvresAvecID($resultat["ID_OEUVRE"]);
 
-												echo '</td>';
+													$utilisateur = $Utilisateur->getUtilisateurParId($resultat["ID_UTILISATEUR"]);
 
-												echo '<td>';
+													$libelleGenre = $Genre->getGenre($oeuvre[0]["ID_genre"]);
 
-												echo $libelleGenre["libellé"];
 
-												echo '</td>';
 
-												echo '<td>';
+													echo '<tr>';
 
-												echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $oeuvre[0]["URL"] ."'></center>";
+													echo '<td>';
 
-												echo '</td>';
+													echo $oeuvre[0]["NOM"];
 
-												echo '<td>';
+													echo '</td>';
 
-												echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."' download></center>";
+													echo '<td>';
 
-												echo '</td>';
+													echo $libelleGenre["libellé"];
+
+													echo '</td>';
+
+													echo '<td>';
+
+													echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $oeuvre[0]["URL"] ."'></center>";
+
+													echo '</td>';
+
+													echo '<td>';
+
+													echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $oeuvre[0]["URL"] ."' download></center>";
+
+													echo '</td>';
+
+													echo '<td>';
+
+													echo '<center><button type="submit" class="btn btn-primary" name=\'ajouterInventaire\' value=" ' . $resultat['ID_OEUVRE']  . '"><i class="glyphicon glyphicon-plus"></i></button></center>';
+
+													echo '</td>';
 
 
 													/*if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
@@ -370,50 +377,52 @@
 											</tbody>
 										</table>
 
+									</form>
 
-									</div>
+
 								</div>
-
-
-							</div><!-- /col-9 -->
-						</div><!-- /padding -->
-					</div>
-					<!-- /main -->
-
-				</div>
-			</div>
-		</div>
-
-
-		<!--post modal-->
-		<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-						Update Status
-					</div>
-					<div class="modal-body">
-						<form class="form center-block">
-							<div class="form-group">
-								<textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
 							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
-						<div>
-							<button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
-							<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
+
+
+						</div><!-- /col-9 -->
+					</div><!-- /padding -->
+				</div>
+				<!-- /main -->
+
+			</div>
+		</div>
+	</div>
+
+
+	<!--post modal-->
+	<div id="postModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+					Update Status
+				</div>
+				<div class="modal-body">
+					<form class="form center-block">
+						<div class="form-group">
+							<textarea class="form-control input-lg" autofocus="" placeholder="What do you want to share?"></textarea>
 						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<div>
+						<button class="btn btn-primary btn-sm" data-dismiss="modal" aria-hidden="true">Post</button>
+						<ul class="pull-left list-inline"><li><a href=""><i class="glyphicon glyphicon-upload"></i></a></li><li><a href=""><i class="glyphicon glyphicon-camera"></i></a></li><li><a href=""><i class="glyphicon glyphicon-map-marker"></i></a></li></ul>
 					</div>
 				</div>
 			</div>
 		</div>
-	</body>
-	<script type="text/javascript" src="js/script.js\"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	</div>
+</body>
+<script type="text/javascript" src="js/script.js\"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
-	</html>
+</html>
