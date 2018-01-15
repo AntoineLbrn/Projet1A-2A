@@ -21,7 +21,8 @@ if (isset($_GET["ajouter"]))
 else if (isset($_GET["inventaire"]))
 {
 	$Oeuvre = new Oeuvre();
-	$Oeuvres = $Oeuvre->getOeuvreInventairePasDansGroupe($_SESSION["utilisateur"]["id"],$idOeuvre,$idGroupe);
+	$Genre = new Genre();
+	$Oeuvres = $Oeuvre->getOeuvreInventairePasDansGroupe($_SESSION["utilisateur"]["id"],$_GET["idGroupe"]);
 	require_once(APP . 'app/view/interfaceGroupe/ajouterOeuvre.php');
 }
 else
@@ -42,7 +43,7 @@ else
 		{
 			foreach ($_POST["ids"] as $id)
 			{
-				$Post->setPost(($_SESSION["utilisateur"]["id"],$_GET["idGroupe",$id);
+				$Post->setPost($_SESSION["utilisateur"]["id"],$_GET["idGroupe"],$id);
 			}
 		}
 	}

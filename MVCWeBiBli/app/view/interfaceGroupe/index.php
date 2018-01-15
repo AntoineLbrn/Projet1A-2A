@@ -275,7 +275,7 @@
 										    Ajouter une oeuvre
 										  </button>
 										  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-										    <a  style="width:2vw;" href="index.php?url=interfaceGroupe&amp;groupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;inventaire=1" class="dropdown-item" href="#"> Depuis l'inventaire</a><br>
+										    <a  style="width:2vw;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;inventaire=1" class="dropdown-item" href="#"> Depuis l'inventaire</a><br>
 										    <a class="dropdown-item" href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>"> Nouvelle Oeuvre</a>
 										  </div>
 										</div>
