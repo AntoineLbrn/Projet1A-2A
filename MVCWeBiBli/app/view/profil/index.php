@@ -98,7 +98,7 @@
 
 									<center><img src="http://icons.iconarchive.com/icons/artua/dragon-soft/512/User-icon.png" width="200px;" height="200px";></center>
 
-									<br><center><a href="index.php?url=profil&amp;id=<?php echo $_SESSION['utilisateur']['id']; ?>&amp;photo=1">Modifier la photo</a></center>
+									<!--<br><center><a href="index.php?url=profil&amp;id=<?php echo $_SESSION['utilisateur']['id']; ?>&amp;photo=1">Modifier la photo</a></center>-->
 
 
 								</div>
