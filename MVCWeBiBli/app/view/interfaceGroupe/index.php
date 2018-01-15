@@ -4,6 +4,8 @@
 <head>
 	<meta charset="utf-8">
 	<script src="js/jsTri.js"></script>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 	
 	<style>
 
@@ -266,7 +268,22 @@
 							</div>
 
 							<div class="panel panel-default">
-								<div class="panel-heading"><a href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]["ID_GROUPE"]?>" class="pull-right">Ajouter une oeuvre</a> <h4>Oeuvres</h4></div>
+								<div class="panel-heading">
+									<div class="pull-right" class="dropdown show">
+										<div class="dropdown">
+										  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										    Ajouter une oeuvre
+										  </button>
+										  <div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+										    <a  style="width:2vw;" href="index.php?url=interfaceGroupe&amp;groupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;inventaire=1" class="dropdown-item" href="#"> Depuis l'inventaire</a><br>
+										    <a class="dropdown-item" href="index.php?url=ajouter&amp;groupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>"> Nouvelle Oeuvre</a>
+										  </div>
+										</div>
+
+									</div>
+
+									<h4>Oeuvres</h4>
+								</div>
 								<div class="panel-body">
 
 
