@@ -125,6 +125,16 @@ class Groupe
 				return $query->fetchAll();				
 			}
 
+			function getOeuvreInventairePasDansGroupe($idUtilisateur, $idOeuvre, $idGroupe)
+			{
+				$sql = "SELECT * FROM `oeuvre` where `ID_OEUVRE` in ( select ID_OEUVRE from post where `ID_OEUVRE` = $idOeuvre and ID_GROUPE=0 and ID_UTILISATEUR=$idUtilisateur ) and `ID_OEUVRE` not in ( select ID_OEUVRE from post where `ID_OEUVRE` = $idOeuvre and ID_GROUPE=$idGroupe and ID_UTILISATEUR=$idUtilisateur)" ;
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				return $query->fetchAll();				
+			}
+
+			
+
 			
 		}
 ?>
