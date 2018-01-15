@@ -343,11 +343,21 @@
 
 													echo '</td>';
 
-													echo '<td>';
+													$verifOeuvreDejaPresenteInventaire = $Post->testOeuvrePresenteInventaire($resultat['ID_OEUVRE'], $_SESSION["utilisateur"]["id"]);
+														
 
-													echo '<center><button type="submit" class="btn btn-primary" name=\'ajouterInventaire\' value=" ' . $resultat['ID_OEUVRE']  . '"><i class="glyphicon glyphicon-plus"></i></button></center>';
 
-													echo '</td>';
+													if ($verifOeuvreDejaPresenteInventaire[0]['present']=='0')
+													{
+														
+														echo '<td>';
+
+														echo '<center><button type="submit" class="btn btn-primary" name=\'ajouterInventaire\' value=" ' . $resultat['ID_OEUVRE']  . '"><i class="glyphicon glyphicon-plus"></i></button></center>';
+
+														echo '</td>';
+													}
+
+
 
 
 													/*if ( $idInstrument[0]["ID_INSTRUMENT"] == 0)
