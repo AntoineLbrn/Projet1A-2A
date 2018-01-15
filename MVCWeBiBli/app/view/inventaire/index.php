@@ -99,6 +99,8 @@
       <th onclick="sortTable(0)">Titre</th>
       <th onclick="sortTable(1)">Genre</th>
       <th onclick="sortTable(2)">Date</th>
+      <th class="col-lg-2">Aperçu</th>
+      <th class="col-lg-2">Télécharger</th>
       <th>Editer</th>
       <th>Supprimer</th>
     </tr>
@@ -125,7 +127,19 @@
 
       echo '<td>';
 
-      echo '<p data-editable>' . $resultat["date"] . '</p>';
+      echo  $resultat["date"];
+
+      echo '</td>';
+
+      echo '<td>';
+
+      echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $resultat["url"] ."' ></center>";
+
+      echo '</td>';
+
+      echo '<td>';
+
+      echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $resultat["url"] ."' download></center>";
 
       echo '</td>';
 
@@ -178,6 +192,25 @@
     $input.one('blur', save).focus();
     
   });
+</script>
+
+<script>
+function myFunction() {
+    var input, filter, ul, li, a, i;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    ul = document.getElementById("myUL");
+    li = ul.getElementsByTagName("li");
+    for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            li[i].style.display = "";
+        } else {
+            li[i].style.display = "none";
+
+        }
+    }
+}
 </script>
 
 
