@@ -33,9 +33,8 @@
             echo ('>' . $value["NOM_GROUPE"] . '</option>' );
           }
         echo '</select>';
+        echo '<a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l\'ajouter à votre inventaire, laissez le menu à \'groupe\' ">Un groupe ?</a>';
         }
-              echo '<a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l\'ajouter à votre inventaire, laissez le menu à \'groupe\' ">Un groupe ?</a>';
-
           ?>
         <br>
         <br>

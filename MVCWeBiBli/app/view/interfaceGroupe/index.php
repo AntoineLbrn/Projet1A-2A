@@ -59,13 +59,13 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
 						<li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
-						<li><a href="index.php?url=profil&amp;idUtilisateur=<?php $chefOrchestre[0]['ID_UTILISATEUR']?>">Voir profil</a></li>
+						<li><a href="index.php?url=profil&amp;idUtilisateur=<?php echo $chefOrchestre[0]['ID_UTILISATEUR'];?>">Voir profil</a></li>
 					</ul>
 				</li>
 				<?php
 				foreach ($Utilisateurs as $resultat)
 				{
-					if( $_SESSION["utilisateur"]["id"] != $resultat["ID_UTILISATEUR"])
+					if($chefOrchestre[0]["ID_UTILISATEUR"] != $resultat["ID_UTILISATEUR"])
 					{
 						$idInstrument = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($resultat['ID_UTILISATEUR'],$_GET["idGroupe"]);
 

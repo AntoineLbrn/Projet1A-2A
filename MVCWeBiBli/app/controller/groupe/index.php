@@ -32,6 +32,7 @@
 		$Groupe->rejoindreGroupe($_POST["nom"]);
 	}
 	if(isset($_GET["creegroupe1"])){
+		$_POST["nom"] = str_replace("'", "\'", $_POST["nom"]);
 		$message[] = $Groupe->ajouterGroupe($_POST["nom"],$_POST["mdp"],$_POST["statut"]);
 		$groupe = getAllGroupe();
 	}
