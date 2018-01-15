@@ -11,11 +11,18 @@ require_once (APP . 'app/view/templates/header.php');
 	$Appartient = new Appartient();
 	$Groupe = new Groupe();
 	$nomGroupe = $Groupe->getNomGroupe($_GET["idGroupe"]);
+	$Post= new Post();
 
 if (isset($_GET["ajouter"]))
 {
 	$Utilisateur = $Appartient->getUtlisateurPasDansGroupe($_GET["idGroupe"]);
 	require_once(APP . 'app/view/interfaceGroupe/ajouterUtilisateur.php');
+}
+else if (isset($_GET["inventaire"]))
+{
+	$Oeuvre = new Oeuvre();
+	$Oeuvres = $Oeuvre->getOeuvreInventairePasDansGroupe($_SESSION["utilisateur"]["id"],$idOeuvre,$idGroupe);
+	require_once(APP . 'app/view/interfaceGroupe/ajouterOeuvre.php');
 }
 else
 {
@@ -29,11 +36,20 @@ else
 			}
 		}
 	}
+	if (isset($_POST["subOeuvre"]))
+	{
+		if (isset($_POST["ids"]))
+		{
+			foreach ($_POST["ids"] as $id)
+			{
+				$Post->setPost(($_SESSION["utilisateur"]["id"],$_GET["idGroupe",$id);
+			}
+		}
+	}
 	$Utilisateurs = $Appartient->getUtilisateurParIdGroupe($_GET["idGroupe"]);
 
 	$Instrument = new Instrument();
 
-	$Post= new Post();
 
 	$Oeuvres = $Post->getOeuvreAvecIdGroupe($_GET["idGroupe"]);
 
