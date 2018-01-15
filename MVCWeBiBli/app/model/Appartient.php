@@ -34,7 +34,7 @@ class Appartient
 	}
 	function getUtlisateurPasDansGroupe($idGroupe)
 	{
-		$sql =  "SELECT * from utilisateur where ID_UTILISATEUR not in ( SELECT `ID_UTILISATEUR` FROM `appartient` WHERE `ID_GROUPE`= " . $idGroupe . ")";
+		$sql =  "SELECT * from utilisateur where (RANG_UTILISATEUR=1 or RANG_UTILISATEUR=2) and ID_UTILISATEUR not in ( SELECT `ID_UTILISATEUR` FROM `appartient` WHERE `ID_GROUPE`= " . $idGroupe . ")";
 
 		$query = $this->db->prepare($sql);
 		$query->execute();
