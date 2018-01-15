@@ -116,5 +116,15 @@ class Groupe
 				$query = $this->db->prepare($sql);
 				$query->execute();
 			}
+
+			function getGroupeOeuvrePasPresenteParUtilisateur($idUtilisateur, $idOeuvre)
+			{
+				$sql = "SELECT * FROM `groupe` where `ID_GROUPE` in ( select `ID_GROUPE` from appartient where ID_UTILISATEUR=$idUtilisateur) and `ID_GROUPE` not in ( SELECT `ID_GROUPE` FROM `post` where `ID_OEUVRE`=$idOeuvre )" ;
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				return $query->fetchAll();				
+			}
+
+			
 		}
 ?>
