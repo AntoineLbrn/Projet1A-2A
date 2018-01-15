@@ -36,6 +36,9 @@ class Groupe
 				if($mdp == "" && $statut!=0){
 					return "Le champ mot de passe doit etre remplis pour un groupe de ce type";
 				}
+				if($nom == ""){
+					return "Le champ nom ne peux pas etre vide";
+				}
 				$max = $this->getMaxId();
 				$max = $max["MAX"];
 				$dispo = $this->existe($nom);
