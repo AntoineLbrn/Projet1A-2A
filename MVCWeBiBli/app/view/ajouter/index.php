@@ -10,12 +10,19 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
-<div class="panel panel-default col-lg-4 col-lg-offset-4" style="margin-top: 10vh;">
+<div class="panel panel-default col-lg-4 col-lg-offset-4" style="margin-top: 10vh; ">
 
   <center><h3>Ajouter une oeuvre</h3>
     <h4 style="color:red"><?php if (isset($err)) echo ($err); ?></h4>
     <form method="post" action="" enctype="multipart/form-data">
       <div class="col-lg-8 col-lg-offset-2">
+        <?php 
+        if (isset($_GET["groupe"]))
+        {
+          echo '<input name="groupe"  style="display:none;" value="' . $_GET["groupe"] . '"/>';
+        }
+        else
+        {?>
         <select class="form-control" name="groupe" id="selectGroupe">
           <option value="">Groupe</option>
           <option value="">Inventaire</option>
@@ -34,10 +41,10 @@
             }    
             echo ('>' . $value["NOM_GROUPE"] . '</option>' );
           }
+              echo '<a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l\'ajouter à votre inventaire, laissez le menu à \'groupe\' ">Un groupe ?</a>';
+        }
           ?>
         </select>
-
-        <a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l'ajouter à votre inventaire, laissez le menu à 'groupe' ">Un groupe ?</a>
         <br>
         <br>
 
@@ -122,7 +129,7 @@
     <input type="hidden" name="MAX_FILE_SIZE" value="100000">
   </br>
 </br>
-<span class="input-group-btn"><button class="btn btn-lg btn-primary" name="sub" type="submit">Partager</button></span>
+<span class="input-group-btn" ><button class="btn btn-lg btn-primary" name="sub" type="submit">Partager</button></span><br>
 </center>
 </div>
 
