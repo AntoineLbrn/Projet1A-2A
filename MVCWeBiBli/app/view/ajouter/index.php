@@ -29,22 +29,14 @@
           <?php
           foreach ($groupe as $value)
           {
-
-
             echo ('<option value = "' . $value["ID_GROUPE"] . '"');
-            if (isset($_GET["groupe"]))
-            {
-              if ($_GET["groupe"] == $value["ID_GROUPE"])
-              {
-                echo ('selected');
-              }
-            }    
             echo ('>' . $value["NOM_GROUPE"] . '</option>' );
           }
-              echo '<a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l\'ajouter à votre inventaire, laissez le menu à \'groupe\' ">Un groupe ?</a>';
+        echo '</select>';
         }
+              echo '<a href="#" style="text-decoration: underline;" data-toggle="tooltip" title="Si vous souhaitez juste l\'ajouter à votre inventaire, laissez le menu à \'groupe\' ">Un groupe ?</a>';
+
           ?>
-        </select>
         <br>
         <br>
 

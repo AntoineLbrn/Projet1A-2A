@@ -41,7 +41,13 @@
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
-                      <li> <a href="index.php?url=profil&amp;idUtilisateur=<?php echo $_SESSION['utilisateur']['id']; ?>"><i class="glyphicon glyphicon-hme"></i> <?php echo  ($_SESSION["utilisateur"]["nom"]) .' '. ($_SESSION["utilisateur"]["prenom"]);?></a>
+                      <li>
+                        <a href="index.php?url=profil&amp;idUtilisateur=<?php echo $_SESSION['utilisateur']['id']; ?>">
+                          <i class="glyphicon glyphicon-hme">
+                            
+                          </i>
+                          <?php echo  ($_SESSION["utilisateur"]["nom"]) .' '. ($_SESSION["utilisateur"]["prenom"]);?>
+                        </a>
                       </li>
                     </ul>
                   	</nav>

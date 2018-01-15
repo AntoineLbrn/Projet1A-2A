@@ -5,16 +5,9 @@ require_once (APP . 'app/model/Genre.php');
 
 $Oeuvre = new Oeuvre();
 
-$oeuvre = $Oeuvre->getOeuvresAvecID($_GET['idOeuvre']);
 
-$date = date("d/m/Y", strtotime($oeuvre[0]["DATESORTIE"]));
 
 $Genre = new Genre();
-
-$genreActuel = $Genre->getGenre($oeuvre[0]['ID_genre']);
-
-
-
 
 
 $allGenre = $Genre->getAllGenre();
@@ -51,6 +44,16 @@ if(isset($_POST['submit']))
 
 	//echo ('<script> window.location.href = "index.php?url=interfaceGroupe&idGroupe=' . $_GET["idGroupe"] . '" </script>');
 }
+
+$oeuvre = $Oeuvre->getOeuvresAvecID($_GET['idOeuvre']);
+
+$date = date("d/m/Y", strtotime($oeuvre[0]["DATESORTIE"]));
+
+$genreActuel = $Genre->getGenre($oeuvre[0]['ID_genre']);
+
+
+
+
 
 function isDate($string) {
 	$matches = array();

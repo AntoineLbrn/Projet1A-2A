@@ -68,7 +68,9 @@
 			$lien = $_FILES["fichier"]["name"];
 			$dossier = 'upload/';
 			$fichier = basename($_FILES['fichier']['name']);
+
 			$taille_maxi = 20000000;
+
 			$taille = filesize($_FILES['fichier']['tmp_name']);
 			$extensions = array('.png', '.gif', '.jpg', '.jpeg', '.pdf','.mp3');
 			$extension = strrchr($_FILES['fichier']['name'], '.'); 
@@ -84,10 +86,13 @@
 			if(!isset($err)) //S'il n'y a pas d'erreur, on upload
 			{	
 			     //On formate le nom du fichier ici...
+				
 			     $fichier = strtr($fichier, 
 			          'ÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÒÓÔÕÖÙÚÛÜÝàáâãäåçèéêëìíîïðòóôõöùúûüýÿ', 
 			          'AAAAAACEEEEIIIIOOOOOUUUUYaaaaaaceeeeiiiioooooouuuuyy');
+
 			     $fichier = preg_replace('/([^.a-z0-9]+)/i', '-', $fichier);
+
 			     if(move_uploaded_file($_FILES['fichier']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
 			     {
 			          $err = 'Votre fichier a été envoyé avec succès !';

@@ -12,6 +12,4 @@
 	{
 		require_once(APP.'app/controller/' . $_GET["url"].'/index.php');
 	}
-
-
 ?>
