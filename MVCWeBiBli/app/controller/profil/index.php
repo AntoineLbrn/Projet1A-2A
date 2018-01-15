@@ -5,11 +5,15 @@ require_once (APP . 'app/model/Oeuvre.php');
 require_once (APP . 'app/model/Post.php');
 require_once (APP . 'app/model/Appartient.php');
 require_once (APP . 'app/model/groupe.php');
+require_once (APP . 'app/model/Utilisateur.php');
 
-/* Affichage des Oeuvres */
+
+$idUtilisateur = $_GET["idUtilisateur"];/* Affichage des Oeuvres */
 $Post = new Post();
+$Utilisateur = new Utilisateur();
+$utilisateur = $Utilisateur->getUtilisateurParId($idUtilisateur);
 
-$oeuvres = $Post->getOeuvreAvecIdUserInventaire($_SESSION["utilisateur"]["id"]);
+$oeuvres = $Post->getOeuvreAvecIdUserInventaire($idUtilisateur);
 $Genre = new Genre();
 
 
@@ -30,7 +34,7 @@ foreach ($oeuvres as $oeuvre)
 /* Affichage des groupes */
 
 $Appartient = new Appartient();
-$idGroupes = $Appartient->getIdGroupeParIdUtilisateur($_SESSION["utilisateur"]["id"]);
+$idGroupes = $Appartient->getIdGroupeParIdUtilisateur($idUtilisateur);
 
 $Groupe = new Groupe();
 

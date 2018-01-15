@@ -57,7 +57,7 @@
 					<ul class="dropdown-menu" role="menu">
 						<li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
 						<li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
-						<li><a href="index.php?url=profil&amp;id <?php $chefOrchestre[0]['ID_UTILISATEUR']?>">Voir profil</a></li>
+						<li><a href="index.php?url=profil&amp;idUtilisateur=<?php $chefOrchestre[0]['ID_UTILISATEUR']?>">Voir profil</a></li>
 					</ul>
 				</li>
 				<?php
@@ -87,7 +87,7 @@
 
 						echo '<li><a href="mailto:' . $resultat["EMAIL"] . '">Envoyer un mail</a></li>';
 
-						echo '<li><a href="index.php?url=profil&amp;id=' . $resultat["ID_UTILISATEUR"] . '">Voir profil</a></li>';
+						echo '<li><a href="index.php?url=profil&amp;idUtilisateur=' . $resultat["ID_UTILISATEUR"] . '">Voir profil</a></li>';
 
 						if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
 						{
