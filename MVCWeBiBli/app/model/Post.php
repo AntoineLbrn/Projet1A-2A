@@ -50,15 +50,13 @@ class Post
 		$exec->execute();	
 	}
 
-	function test($id)
+	function testOeuvrePresenteInventaire($idOeuvre, $idUtilisateur)
 	{
-		$utilisateur = $this->db->query("select * from Oeuvre where ID_OEUVRE in
-			(
-			SELECT ID_OEUVRE FROM post WHERE ID_UTILISATEUR=$id and `ID_GROUPE`=0
-			)
-			");
-		return $utilisateur;
+		$utilisateur = $this->db->query("SELECT count(*) as present FROM `post` WHERE `ID_OEUVRE` = $idOeuvre and `ID_GROUPE`=0 and ID_UTILISATEUR=$idUtilisateur ");
+		return $utilisateur->fetchall();
 	}
+
+
 
 	
 

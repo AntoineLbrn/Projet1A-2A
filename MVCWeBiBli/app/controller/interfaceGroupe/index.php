@@ -89,7 +89,8 @@ else
 
 	if (isset($_POST['ajouterInventaire']))
 	{
-		$test = $Post->setPost($_SESSION['utilisateur']['id'],0,$_POST['ajouterInventaire']);
+		
+		$Post->setPost($_SESSION['utilisateur']['id'],0,$_POST['ajouterInventaire']); // ajout de l'oeuvre à l'inventaire
 	}
 
 
