@@ -12,6 +12,7 @@ require_once (APP . 'app/view/templates/header.php');
 	$Groupe = new Groupe();
 	$nomGroupe = $Groupe->getNomGroupe($_GET["idGroupe"]);
 	$Post= new Post();
+	$Genre = new Genre();
 
 if (isset($_GET["ajouter"]))
 {
@@ -21,7 +22,6 @@ if (isset($_GET["ajouter"]))
 else if (isset($_GET["inventaire"]))
 {
 	$Oeuvre = new Oeuvre();
-	$Genre = new Genre();
 	$Oeuvres = $Oeuvre->getOeuvreInventairePasDansGroupe($_SESSION["utilisateur"]["id"],$_GET["idGroupe"]);
 	require_once(APP . 'app/view/interfaceGroupe/ajouterOeuvre.php');
 }

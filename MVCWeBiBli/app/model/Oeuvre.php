@@ -58,7 +58,7 @@ class Oeuvre
 
 	function getOeuvreInventairePasDansGroupe($idUtilisateur, $idGroupe)
 	{
-		$sql = "SELECT * FROM `oeuvre` where `ID_OEUVRE` in ( select ID_OEUVRE from post where ID_GROUPE=0 and ID_UTILISATEUR=$idUtilisateur ) and `ID_OEUVRE` not in ( select ID_OEUVRE from post where ID_GROUPE=$idGroupe and ID_UTILISATEUR=$idUtilisateur)" ;
+		$sql = "SELECT * FROM `oeuvre` where `ID_OEUVRE` in ( select ID_OEUVRE from post where ID_GROUPE=0 and ID_UTILISATEUR=$idUtilisateur ) and `ID_OEUVRE` not in ( select ID_OEUVRE from post where ID_GROUPE=$idGroupe)" ;
 		$query = $this->db->prepare($sql);
 		$query->execute();
 		return $query->fetchAll();				
