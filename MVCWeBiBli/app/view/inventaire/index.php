@@ -98,7 +98,8 @@
     <tr class="filters">
       <th onclick="sortTable(0)">Titre</th>
       <th onclick="sortTable(1)">Genre</th>
-      <th onclick="sortTable(2)">Date</th>
+      <th onclick="sortTable(2)">Instrument</th>
+      <th onclick="sortTable(3)">Date</th>
       <th class="col-lg-2">Aperçu</th>
       <th class="col-lg-2">Télécharger</th>
       <th>Editer</th>
@@ -123,6 +124,12 @@
       echo '<td>';
 
       echo $resultat["genre"];
+
+      echo '</td>';
+
+      echo '<td>';
+
+      echo $resultat["instrument"][0]["libellé"];
 
       echo '</td>';
 

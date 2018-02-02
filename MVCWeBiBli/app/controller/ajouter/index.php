@@ -5,11 +5,13 @@
 	require_once (APP . 'app/model/Artiste.php');
 	require_once (APP . 'app/model/Ecrit.php');
 	require_once (APP . 'app/model/Post.php');
+	require_once (APP . 'app/model/Instrument.php');
 
 	$Groupe = new Groupe();
 	$groupe = $Groupe->getAllGroupe();
 
-	
+	$Instrument = new Instrument();
+	$instrument = $Instrument->getInstruments();
 
 	$Genre = new Genre();
 	$genre = $Genre->getAllGenre();
@@ -19,7 +21,11 @@
 
 	if (isset($_POST["sub"]))
 	{
-		if (!isset($_FILES["fichier"]) || ($_POST["genre"]=="" && empty($_POST["nouveauGenre"])) || empty($_POST["nomOeuvre"]) || empty($_POST["auteur"]) || !isset($_POST["dateoeuvre"]))
+		if (empty($_POST["auteur"]))
+		{
+			$_POST["auteur"] = "Auteur inconnu";
+		}
+		if (!isset($_FILES["fichier"]) || ($_POST["genre"]=="" && empty($_POST["nouveauGenre"])) || empty($_POST["nomOeuvre"]) || empty($_POST["auteur"]) || !isset($_POST["dateoeuvre"]) || $_POST["instrument"] =="")
 		{
 			$err = "Veuillez remplir tous les champs";
 		}
@@ -63,7 +69,7 @@
 			$id = $Oeuvre->verifOeuvre($_POST["nomOeuvre"]);
 			if (!$id==null)
 			{
-				$err="Une oeuvre existe déjà avec ce nom.";
+				$err="Veuillez changer le nom de votre oeuvre.";
 			}
 			$lien = $_FILES["fichier"]["name"];
 			$dossier = 'upload/';
@@ -96,7 +102,7 @@
 			     if(move_uploaded_file($_FILES['fichier']['tmp_name'], $dossier . $fichier)) //Si la fonction renvoie TRUE, c'est que ça a fonctionné...
 			     {
 			          $err = 'Votre fichier a été envoyé avec succès !';
-					  $Oeuvre->insererOeuvre($_POST["nomOeuvre"],$_POST["dateoeuvre"],$genreO,' ', $fichier);
+					  $Oeuvre->insererOeuvre($_POST["nomOeuvre"],$_POST["dateoeuvre"],$genreO,' ', $fichier,$_POST["instrument"]);
 					  $idO = $Oeuvre->verifOeuvre($_POST["nomOeuvre"]);
 					  $Ecrit = new Ecrit();
 					  $artisteO=$artisteO["ID_ARTISTE"];

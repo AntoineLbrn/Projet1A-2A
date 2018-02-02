@@ -18,9 +18,9 @@ class Oeuvre
 		}
 	}
 
-	public function InsererOeuvre($NOM,$DATESORTIE,$ID_GENRE,$EDITEUR,$URL)
+	public function InsererOeuvre($NOM,$DATESORTIE,$ID_GENRE,$EDITEUR,$URL,$instrument)
 	{
-		$sql = "INSERT INTO oeuvre (NOM,DATESORTIE,ID_genre,EDITEUR,URL) values ('" . $NOM ."','" . date('Y-m-d', strtotime(str_replace('-', '/', $DATESORTIE))) ."', '" . $ID_GENRE ."', '" . $EDITEUR ."', '" . $URL ."' )";
+		$sql = "INSERT INTO oeuvre (NOM,DATESORTIE,ID_genre,EDITEUR,URL,ID_INSTRUMENT) values ('" . $NOM ."','" . date('Y-m-d', strtotime(str_replace('-', '/', $DATESORTIE))) ."', '" . $ID_GENRE ."', '" . $EDITEUR ."', '" . $URL ."', $instrument )";
 		$query = $this->db->prepare($sql);
 		$query->execute();	   	
 	}
@@ -54,7 +54,6 @@ class Oeuvre
 		$query->execute();	
 
 	}
-
 
 	function getOeuvreInventairePasDansGroupe($idUtilisateur, $idGroupe)
 	{

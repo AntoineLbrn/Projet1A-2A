@@ -56,6 +56,15 @@
           </span>
 
         </div>
+        <select id="selectInstrument" name ="instrument" class="form-control" style="display:block;margin-top:2vh;">
+            <option value ="" selected>Instrument</option>
+            <?php
+            foreach ($instrument as $value)
+            {
+              echo ('<option value = "' . $value["ID_instrument"] . '">' . $value["libellé"] . '</option>' );
+            }
+            ?>
+          </select>
         <div style="margin-top : 2vh;">
     
           <input type="text" id="nouveauGenre" name="nouveauGenre" class="form-control input-lg" style="display:none;" placeholder="Nouveau genre"></input>

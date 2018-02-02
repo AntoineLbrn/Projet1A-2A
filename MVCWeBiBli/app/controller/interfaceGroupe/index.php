@@ -62,6 +62,8 @@ else
 
 	$Utilisateur = new Utilisateur();
 
+	$evenements = $Groupe->getEvenements($_GET["idGroupe"]);
+
 	$allInstruments = $Instrument->getInstruments();
 
 	if(isset($_POST['ajouterInstu']))

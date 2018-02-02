@@ -136,6 +136,14 @@ class Groupe
 				return $query->fetchAll();				
 			}
 
+			function getEvenements($idGroupe)
+			{
+				$sql = "SELECT * FROM `evenement` where `ID_GROUPE` = $idGroupe" ;
+				$query = $this->db->prepare($sql);
+				$query->execute();
+				return $query->fetchAll();						
+			}
+
 			
 		}
 ?>
