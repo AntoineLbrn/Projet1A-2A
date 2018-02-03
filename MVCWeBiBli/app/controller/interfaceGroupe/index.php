@@ -47,6 +47,8 @@ else
 			}
 		}
 	}
+	$chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
+
 	$Utilisateurs = $Appartient->getUtilisateurParIdGroupe($_GET["idGroupe"]);
 
 	$Instrument = new Instrument();
@@ -54,15 +56,9 @@ else
 
 	$Oeuvres = $Post->getOeuvreAvecIdGroupe($_GET["idGroupe"]);
 
-
-
-	//var_dump($Oeuvres);
-
 	$Oeuvre = new Oeuvre();
 
 	$Utilisateur = new Utilisateur();
-
-	$evenements = $Groupe->getEvenements($_GET["idGroupe"]);
 
 	$allInstruments = $Instrument->getInstruments();
 
@@ -76,9 +72,14 @@ else
 
 
 
-	$chefOrchestre = $Appartient->getChefOrchestreParIdGroupe($_GET["idGroupe"]);
 
-
+	if (isset($_GET["idEvenement"]))
+	{
+		if ($_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"])
+		{
+			$Groupe->retirerEvenement($_GET["idEvenement"]);
+		}
+	}
 	if (isset($_GET["idUtilisateur"]))
 	{
 		if ($_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"])
@@ -88,6 +89,8 @@ else
 			exit;
 		}
 	}
+
+	$evenements = $Groupe->getEvenements($_GET["idGroupe"]);
 
 	if (isset($_POST['ajouterInventaire']))
 	{

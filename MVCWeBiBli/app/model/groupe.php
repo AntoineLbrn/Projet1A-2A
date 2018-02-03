@@ -138,10 +138,16 @@ class Groupe
 
 			function getEvenements($idGroupe)
 			{
-				$sql = "SELECT * FROM `evenement` where `ID_GROUPE` = $idGroupe" ;
+				$sql = "SELECT * FROM `evenement` where `ID_GROUPE` = $idGroupe and date_evenement> sysdate()" ;
 				$query = $this->db->prepare($sql);
 				$query->execute();
 				return $query->fetchAll();						
+			}
+			function retirerEvenement($idEvenement)
+			{
+				$sql = "DELETE FROM Evenement where ID_EVENEMENT = $idEvenement";
+				$query = $this->db->prepare($sql);
+				$query->execute();				
 			}
 
 			

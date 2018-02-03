@@ -126,10 +126,10 @@
 						foreach ($evenements as $value)
 						{?>
 							<div class="panel panel-default">
+								<a style="color:red;float:right;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;idEvenement=<?php echo $value['ID_EVENEMENT']; ?>"  class="glyphicon glyphicon-remove"></a>
 								<div class="panel-heading" style="text-align: center">
 									<h4><b><?php echo date("d/m/y",strtotime($value["date_evenement"])) ; ?></b> : <?php echo $value["libellé"] ;?></h4>
 								</div>
-
 							</div>	
 					<?php } ?>
 					
