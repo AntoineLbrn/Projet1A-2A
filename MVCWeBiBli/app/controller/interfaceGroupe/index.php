@@ -13,8 +13,22 @@ require_once (APP . 'app/view/templates/header.php');
 	$nomGroupe = $Groupe->getNomGroupe($_GET["idGroupe"]);
 	$Post= new Post();
 	$Genre = new Genre();
-
-if (isset($_GET["ajouter"]))
+if (isset($_POST["submitEvenement"]))
+{
+	if (empty($_POST["libelle"]) || empty($_POST["date"]))
+	{
+		$err = "Veuillez remplir tous les champs";
+		require_once(APP . 'app/view/interfaceGroupe/ajouterEvenement.php');
+	}
+	else
+	{
+		$_POST["libelle"] = htmlspecialchars($_POST["libelle"]);
+		$_POST["libelle"] = str_replace("'", "\'", $_POST["libelle"]);
+		$Groupe->insererEvenement($_GET["idGroupe"],$_POST["libelle"],date("Y-d-m",strtotime($_POST["date"])));
+		header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
+	}
+}
+else if (isset($_GET["ajouter"]))
 {
 	$Utilisateur = $Appartient->getUtlisateurPasDansGroupe($_GET["idGroupe"]);
 	require_once(APP . 'app/view/interfaceGroupe/ajouterUtilisateur.php');
@@ -24,6 +38,10 @@ else if (isset($_GET["inventaire"]))
 	$Oeuvre = new Oeuvre();
 	$Oeuvres = $Oeuvre->getOeuvreInventairePasDansGroupe($_SESSION["utilisateur"]["id"],$_GET["idGroupe"]);
 	require_once(APP . 'app/view/interfaceGroupe/ajouterOeuvre.php');
+}
+else if (isset($_GET["AjouterEvenement"]))
+{
+	require_once(APP . 'app/view/interfaceGroupe/ajouterEvenement.php');
 }
 else
 {

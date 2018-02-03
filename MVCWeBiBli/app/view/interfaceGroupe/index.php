@@ -118,21 +118,29 @@
 
 				<div class="full col-sm-9">
 
-					<center><h1> Bienvenue dans votre groupe <?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></h1></center>
+					<center><h1 style="margin-bottom: 7vh;"><?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></h1></center>
 
 					<!-- content -->
-					<div style="margin-top:4vh" class="row">
 					<?php
+					if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
+					{
+						echo							"<a style='color:green'  href='index.php?url=interfaceGroupe&amp;idGroupe=";
+						echo $nomGroupe[0]["ID_GROUPE"];
+						echo "&amp;AjouterEvenement=1'>Ajouter un évènement</a>";
+					}
+					?>
+
+						<?php 
 						foreach ($evenements as $value)
 						{?>
 							<div class="panel panel-default">
 								<a style="color:red;float:right;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;idEvenement=<?php echo $value['ID_EVENEMENT']; ?>"  class="glyphicon glyphicon-remove"></a>
 								<div class="panel-heading" style="text-align: center">
-									<h4><b><?php echo date("d/m/y",strtotime($value["date_evenement"])) ; ?></b> : <?php echo $value["libellé"] ;?></h4>
+									<h4><b><?php echo date("d/m/y",strtotime($value["date_evenement"])) ; ?></b> : <?php echo $value["libelle"] ;?></h4>
 								</div>
 							</div>	
 					<?php } ?>
-					
+
 						<!-- main col left -->
 						<div class="col-sm-5">
 

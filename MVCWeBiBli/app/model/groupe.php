@@ -149,6 +149,13 @@ class Groupe
 				$query = $this->db->prepare($sql);
 				$query->execute();				
 			}
+			function insererEvenement($idGroupe,$libelle,$date)
+			{
+				$sql = "INSERT INTO evenement(ID_GROUPE,libelle,date_evenement) VALUES ($idGroupe,'$libelle','$date')";
+				var_dump($sql);
+				$query = $this->db->prepare($sql);
+				$query->execute();				
+			}
 
 			
 		}
