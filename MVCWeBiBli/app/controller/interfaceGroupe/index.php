@@ -116,6 +116,7 @@ else
 		$Post->setPost($_SESSION['utilisateur']['id'],0,$_POST['ajouterInventaire']); // ajout de l'oeuvre à l'inventaire
 	}
 
+	$instrumentSession = $Appartient->getIdInstrumentParIdUtilisateurEtIdGroupe($_SESSION["utilisateur"]["id"], $_GET["idGroupe"]);
 
 
 	//var_dump($_SESSION["utilisateur"]["id"]);

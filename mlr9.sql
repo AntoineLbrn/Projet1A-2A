@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  ven. 02 fév. 2018 à 22:34
+-- Généré le :  Dim 18 fév. 2018 à 15:27
 -- Version du serveur :  5.7.19
 -- Version de PHP :  5.6.31
 
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `appartient` (
 --
 
 INSERT INTO `appartient` (`ID_UTILISATEUR`, `ID_GROUPE`, `RANG`, `ID_INSTRUMENT`) VALUES
-(1, 1, 1, 1),
+(1, 1, 1, 4),
 (2, 1, 0, 8),
 (2, 2, 1, 9),
 (3, 2, 0, 0),
@@ -111,19 +111,30 @@ INSERT INTO `ecrit` (`ID_OEUVRE`, `ID_ARTISTE`) VALUES
 DROP TABLE IF EXISTS `evenement`;
 CREATE TABLE IF NOT EXISTS `evenement` (
   `ID_EVENEMENT` int(11) NOT NULL AUTO_INCREMENT,
-  `libellé` text NOT NULL,
+  `libelle` text NOT NULL,
   `ID_GROUPE` int(11) NOT NULL,
   `date_evenement` date NOT NULL,
   PRIMARY KEY (`ID_EVENEMENT`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `evenement`
 --
 
-INSERT INTO `evenement` (`ID_EVENEMENT`, `libellé`, `ID_GROUPE`, `date_evenement`) VALUES
-(1, 'Concert au Zénith de Caen', 1, '2018-02-22'),
-(2, 'Répétition générale', 1, '2018-02-18');
+INSERT INTO `evenement` (`ID_EVENEMENT`, `libelle`, `ID_GROUPE`, `date_evenement`) VALUES
+(5, 'Concert au Zénith de Caen', 1, '2018-02-21'),
+(6, 'Concert passé', 1, '2018-02-01'),
+(7, 'issou', 10, '1999-03-24'),
+(8, 'Evenementdepartélios', 1, '1970-01-01'),
+(9, 'goifhfazeoi', 1, '1970-01-01'),
+(19, 'issou', 1, '1970-01-01'),
+(11, 'encore un évènement', 1, '2018-01-02'),
+(12, 'antoine', 1, '1970-01-01'),
+(13, 'encore un ev', 1, '2018-01-02'),
+(14, 'dernier ev', 1, '2018-01-03'),
+(15, 'pranked', 1, '1970-01-01'),
+(16, 'azefazef', 1, '1970-01-01'),
+(20, 'un év', 1, '1970-01-01');
 
 -- --------------------------------------------------------
 
@@ -219,6 +230,127 @@ CREATE TABLE IF NOT EXISTS `livre` (
   `TOME` int(11) NOT NULL,
   PRIMARY KEY (`ID_OEUVRE`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `message`
+--
+
+DROP TABLE IF EXISTS `message`;
+CREATE TABLE IF NOT EXISTS `message` (
+  `ID_MESSAGE` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_EXPEDITEUR` int(11) NOT NULL,
+  `ID_DESTINATAIRE` int(11) NOT NULL,
+  `LIBELLE` text NOT NULL,
+  `HEURE` date NOT NULL,
+  `ID_CONVERSATION` int(11) NOT NULL,
+  PRIMARY KEY (`ID_MESSAGE`)
+) ENGINE=MyISAM AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `message`
+--
+
+INSERT INTO `message` (`ID_MESSAGE`, `ID_EXPEDITEUR`, `ID_DESTINATAIRE`, `LIBELLE`, `HEURE`, `ID_CONVERSATION`) VALUES
+(1, 1, 3, 'Salut maxime !', '2018-02-09', 1),
+(2, 3, 1, 'Salut ça va?', '2018-02-09', 1),
+(3, 1, 4, 'Salut théo', '2018-02-01', 2),
+(4, 1, 3, 'Oui et toi ?', '2018-02-17', 1),
+(5, 1, 3, 'J\'attends ta réponse...', '2018-02-17', 1),
+(6, 1, 3, 'Et pendant ce temps je teste différents caractères \'{\"\"*ù¨', '2018-02-17', 1),
+(30, 1, 3, 'yo mec', '2018-02-18', 1),
+(31, 1, 3, '&lt;script&gt;alert(\'yo mec\')&lt;/script&gt;', '2018-02-18', 1),
+(32, 1, 3, 'Cela marche vraiment bien 135/&amp;~=°²²²&lt;script&gt; alert(issou) &lt;/script&gt;', '2018-02-18', 1),
+(9, 1, 3, 'testons le scroll', '2018-02-17', 1),
+(10, 1, 3, 'testons le scroll', '2018-02-17', 1),
+(11, 1, 3, 'wow', '2018-02-17', 1),
+(12, 1, 3, 'wow', '2018-02-17', 1),
+(13, 1, 3, 'wow', '2018-02-17', 1),
+(14, 1, 3, 'wow', '2018-02-17', 1),
+(15, 1, 3, 'wow', '2018-02-17', 1),
+(16, 1, 3, 'wow', '2018-02-17', 1),
+(17, 1, 3, 'wow', '2018-02-17', 1),
+(18, 1, 3, 'wow', '2018-02-17', 1),
+(19, 1, 3, 'Re ça va ?', '2018-02-17', 1),
+(20, 1, 3, 'Re ça va ?', '2018-02-17', 1),
+(21, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(22, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(23, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(24, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(25, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(26, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(27, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(28, 1, 3, 'Re ça va ?', '2018-02-18', 1),
+(29, 1, 4, 'ça va ?', '2018-02-18', 2),
+(33, 1, 3, 'azefaze', '2018-02-18', 1),
+(34, 1, 3, 'message', '2018-02-18', 1),
+(35, 1, 3, '&lt;mmessage&gt;', '2018-02-18', 1),
+(36, 1, 3, 'Cela marche vraiment bien 135/&amp;~=°²²²&lt;script&gt; alert(issou) &lt;/script&gt;', '2018-02-18', 1),
+(37, 1, 3, 'miniute 17', '2018-02-18', 1),
+(38, 1, 4, 'Bon et bien j\'imagine que ça va', '2018-02-18', 2),
+(39, 1, 4, 'Bon et bien j\'imagine que ça va', '2018-02-18', 2),
+(40, 4, 1, 'hey', '2018-02-18', 2),
+(41, 4, 2, 'salut maxime !!', '2018-02-18', 3),
+(42, 2, 4, 'yo mec', '2018-02-18', 3),
+(43, 2, 4, 'yo mec', '2018-02-18', 3),
+(44, 2, 4, 'yo mec', '2018-02-18', 3),
+(45, 2, 4, 'yo mec', '2018-02-18', 3),
+(46, 2, 4, 'yo mec', '2018-02-18', 3),
+(47, 2, 4, 'yo mec', '2018-02-18', 3),
+(48, 1, 3, 'fvjv', '2018-02-18', 1),
+(49, 1, 3, 'fvjv', '2018-02-18', 1),
+(50, 1, 3, 'fvjv', '2018-02-18', 1),
+(51, 1, 3, 'fvjv', '2018-02-18', 1),
+(52, 1, 4, 'plop', '2018-02-18', 2),
+(53, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(54, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(55, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(56, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(57, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(58, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(59, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(60, 1, 4, 'attends je réécris un long message', '2018-02-18', 2),
+(61, 1, 3, 'yoyo', '2018-02-18', 1),
+(62, 1, 3, 'yoyo', '2018-02-18', 1),
+(63, 1, 4, 're frr', '2018-02-18', 2),
+(64, 1, 4, 'yop', '2018-02-18', 2),
+(65, 1, 4, 'yop', '2018-02-18', 2),
+(66, 1, 4, 'yop', '2018-02-18', 2),
+(67, 1, 4, 'yop', '2018-02-18', 2),
+(68, 1, 4, 're', '2018-02-18', 2),
+(69, 1, 3, 'ca va tjrs ?', '2018-02-18', 1),
+(70, 1, 4, 're', '2018-02-18', 2),
+(71, 1, 4, 're', '2018-02-18', 2),
+(72, 1, 4, 'lul', '2018-02-18', 2),
+(73, 1, 4, 'lul', '2018-02-18', 2),
+(74, 1, 4, 'lul', '2018-02-18', 2),
+(75, 1, 2, 'hey brooooo\'', '2018-02-18', 5),
+(76, 1, 2, 'ça va ?', '2018-02-18', 5);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `messagerie`
+--
+
+DROP TABLE IF EXISTS `messagerie`;
+CREATE TABLE IF NOT EXISTS `messagerie` (
+  `ID_CONVERSATION` int(11) NOT NULL AUTO_INCREMENT,
+  `ID_UTILISATEUR1` int(11) NOT NULL,
+  `ID_UTILISATEUR2` int(11) NOT NULL,
+  PRIMARY KEY (`ID_CONVERSATION`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `messagerie`
+--
+
+INSERT INTO `messagerie` (`ID_CONVERSATION`, `ID_UTILISATEUR1`, `ID_UTILISATEUR2`) VALUES
+(1, 1, 3),
+(2, 1, 4),
+(3, 4, 2),
+(5, 2, 1);
 
 -- --------------------------------------------------------
 

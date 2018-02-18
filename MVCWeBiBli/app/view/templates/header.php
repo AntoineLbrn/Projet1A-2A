@@ -33,6 +33,9 @@
                       <?php if ($_SESSION["utilisateur"]["rang"]==2){?><li>
                         <a href="index.php?url=admin" role="button" data-toggle="modal"><i class="glyphicon glyphicon-user"></i> Gérer les inscriptions</a>
                       </li><?php }?>
+                      <li>
+                        <a href="index.php?url=messagerie" role="button" data-toggle="modal"><i class="glyphicon glyphicon-envelope"></i> &nbsp;Messages</a>
+                      </li>
                     </ul>
                     
                     <ul class="nav navbar-nav navbar-right">

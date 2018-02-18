@@ -58,7 +58,7 @@
 				<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"> <?php echo $chefOrchestre[0]["NOM_UTILISATEUR"] . ' ' . $chefOrchestre[0]["PRENOM_UTILISATEUR"] ; ?> <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><strong style="margin-left: 1vw">Chef d'orchestre</strong></li>
-						<li><a href="mailto: <?php $chefOrchestre[0]['EMAIL'] ?> ">Envoyer un mail</a></li>
+						<li><a href="index.php?url=messagerie&amp;idUtilisateur=<?php echo $chefOrchestre[0]['ID_UTILISATEUR'] ?> ">Ouvrir la conversation</a></li>
 						<li><a href="index.php?url=profil&amp;idUtilisateur=<?php echo $chefOrchestre[0]['ID_UTILISATEUR'];?>">Voir profil</a></li>
 					</ul>
 				</li>
@@ -87,7 +87,7 @@
 						}
 						echo '</strong></li>';
 
-						echo '<li><a href="mailto:' . $resultat["EMAIL"] . '">Envoyer un mail</a></li>';
+						echo '<li><a href="index.php?url=messagerie&amp;idUtilisateur='. $resultat["ID_UTILISATEUR"] . '">Ouvrir une conversation</a></li>';
 
 						echo '<li><a href="index.php?url=profil&amp;idUtilisateur=' . $resultat["ID_UTILISATEUR"] . '">Voir profil</a></li>';
 
@@ -338,7 +338,13 @@
 
 													echo '<tr>';
 
-													echo '<td>';
+													echo '<td ';
+
+													if ($instrument[0]["ID_instrument"] != $instrumentSession[0]["ID_INSTRUMENT"])
+													{
+														echo ' style="color: #999999"';
+													}
+													echo '>';
 
 													echo $oeuvre[0]["NOM"];
 
