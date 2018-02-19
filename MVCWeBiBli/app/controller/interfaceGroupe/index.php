@@ -24,7 +24,9 @@ if (isset($_POST["submitEvenement"]))
 	{
 		$_POST["libelle"] = htmlspecialchars($_POST["libelle"]);
 		$_POST["libelle"] = str_replace("'", "\'", $_POST["libelle"]);
-		$Groupe->insererEvenement($_GET["idGroupe"],$_POST["libelle"],date("Y-d-m",strtotime($_POST["date"])));
+		$dateInserer = str_replace('/', '-',  $_POST['date']);
+		$dateInserer = date("Y-m-d", strtotime($dateInserer));
+		$Groupe->insererEvenement($_GET["idGroupe"],$_POST["libelle"],$dateInserer);
 		header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
 	}
 }
