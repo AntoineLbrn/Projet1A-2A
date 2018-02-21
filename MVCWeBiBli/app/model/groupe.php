@@ -64,7 +64,8 @@ class Groupe
 			{
 				$id = $this->getId($groupe);
 				$id = $id["ID_GROUPE"];
-				$sql = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`) VALUES ('$id','" . $_SESSION["utilisateur"]["id"]."',0)";
+				var_dump($id);
+				$sql = "INSERT INTO `APPARTIENT`(`ID_GROUPE`,`ID_UTILISATEUR`,`rang`,`ID_INSTRUMENT`) VALUES ('$id','" . $_SESSION["utilisateur"]["id"]."',0,0)";
 				$query = $this->db->prepare($sql);
 				$query->execute();
 			}

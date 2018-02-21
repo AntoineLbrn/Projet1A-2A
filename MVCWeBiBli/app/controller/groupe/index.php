@@ -29,7 +29,8 @@
 			$groupe = getAllGroupe();
 	}
 	if(isset($_GET["rejoindreGroupe"])){
-		$Groupe->rejoindreGroupe($_POST["nom"]);
+		$Groupe->rejoindreGroupe(addslashes($_POST["nom"]));
+		$groupe = getAllGroupe();
 	}
 	if(isset($_GET["creegroupe1"])){
 		$_POST["nom"] = str_replace("'", "\'", $_POST["nom"]);
