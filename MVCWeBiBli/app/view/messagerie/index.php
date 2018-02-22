@@ -390,7 +390,7 @@
                       </div>
                       <div class="name">Vous</div>
                       <div class="text">
-                        <?php echo $message["LIBELLE"] . ' ' . $indexMessage; ?>
+                        <?php echo $message["LIBELLE"] ?>
                       </div>
                     </div>                    
                     <?php }
