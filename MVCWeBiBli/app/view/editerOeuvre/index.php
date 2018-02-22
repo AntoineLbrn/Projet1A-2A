@@ -88,7 +88,7 @@
 					<br><br>
 					<input type="submit" name ="submit" class="btn btn-primary"> 
 					<br><br>
-					<?php  echo '<a href="index.php?url=inventaire" class="btn btn-success"> Retour au menu </a>'; ?>
+					<a href="index.php?url=inventaire" class="btn btn-success"> Retour au menu </a>
 					
 				</form>               
 			</div>

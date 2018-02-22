@@ -47,6 +47,9 @@
                 <button class="btn btn-primary" id="envoyer" name="sub" type="submit">Ajouter</button>
                 </br>
                 <h4 style="color:red"><?php if (isset($err)) echo ($err); ?></h4>
+                
+                <a href="index.php?url=inventaire" class="btn btn-success"> Retour au menu </a>
+               
         </center>
 
 

@@ -359,7 +359,7 @@
                     </div>
                     <div class="name">Vous</div>
                     <div class="text" style="margin-bottom: 2vh;">
-                      <?php echo $message["LIBELLE"] . ' ' . $indexMessage; ?>
+                      <?php echo $message["LIBELLE"] ?>
                     </div>
                   </div>                    
                   <?php }
@@ -373,7 +373,7 @@
                         <div class="status offline"></div>
                       </div>
                       <div class="name"><?php echo $nom; ?></div>
-                      <div class="text">
+                      <div class="text" style="margin-bottom: 2vh;">
                         <?php echo $message["LIBELLE"]; ?>
                       </div>
                     </div>
