@@ -157,6 +157,11 @@ class Groupe
 				$query = $this->db->prepare($sql);
 				$query->execute();				
 			}
+			function putMessage($pseudo,$message,$idGroupe){
+				
+				$req = $this->db->prepare('INSERT INTO minichat (pseudo, message,groupe) VALUES(?, ?, ?)');
+				$req->execute(array($pseudo, $message, $idGroupe));
+			}
 
 			
 		}

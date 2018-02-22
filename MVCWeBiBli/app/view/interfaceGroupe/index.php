@@ -5,7 +5,12 @@
 	<meta charset="utf-8">
 	<script src="js/jsTri.js"></script>
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+	<script type="text/javascript">
+		function ouvre()
+		{
+			window.open("tchat?id=<?php echo $_GET['idGroupe'] ?>",'fenetre','width=650,height=500');
+		}
+	</script>
 	
 	<style>
 
@@ -121,6 +126,7 @@
 					<center><h1 style="margin-bottom: 7vh;"><?php echo $nomGroupe[0]["NOM_GROUPE"]; ?></h1></center>
 
 					<!-- content -->
+					
 					<?php
 					if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
 					{
@@ -196,6 +202,52 @@
 								</div>
 							</div>
 
+							<div class="panel panel-default">
+
+								<div class="panel-body">
+
+									<p class="lead">Serveur de discussion</p>
+
+									<div class="col-lg-7" id="chat">
+
+										<?php
+ 
+
+											try
+											{
+												$bdd = new PDO('mysql:host=localhost;dbname=mlr9;charset=utf8', 'root', '');
+											}
+											catch(Exception $e)
+											{
+        										die('Erreur : '.$e->getMessage());
+											}
+
+											if(isset($_GET['idGroupe']))$id = $_GET['idGroupe'] ;
+
+
+											$reponse = $bdd->prepare("SELECT pseudo, message, groupe FROM minichat where groupe = $id order by ID DESC LIMIT 0,15");
+											$reponse->execute();
+
+											while ($donnees = $reponse->fetch())
+											{
+
+
+
+
+														echo '<p><strong>' . htmlspecialchars($donnees['pseudo']) . '</strong> : ' . htmlspecialchars($donnees['message']) . '</p>';
+											}
+
+
+												$reponse->closeCursor();
+
+										?>
+
+     										<input type="button" onclick="ouvre()" value="Participer à la discussion">
+
+									</div>
+
+								</div>
+							</div>
 
 
 						</div>
