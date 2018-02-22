@@ -100,11 +100,11 @@
       <th onclick="sortTable(1)">Genre</th>
       <th onclick="sortTable(2)">Instrument</th>
       <th onclick="sortTable(3)">Date</th>
-      <th class="col-lg-2">Aperçu</th>
-      <th class="col-lg-2">Télécharger</th>
-      <th>Editer</th>
-      <th>Supprimer</th>
-      <th>Ajouter</th>
+      <th class="col-lg-1">Aperçu</th>
+      <th class="col-lg-1">Télécharger</th>
+      <th class="col-lg-1">Editer</th>
+      <th class="col-lg-1">Supprimer</th>
+      <th class="col-lg-1">Ajouter</th>
     </tr>
   </thead>
   <tbody>
@@ -141,31 +141,31 @@
 
       echo '<td>';
 
-      echo "<center><a class='glyphicon glyphicon-eye-open' href='upload/" . $resultat["url"] ."' ></center>";
+      echo "<center><a class='glyphicon glyphicon-eye-open btn btn-default' href='upload/" . $resultat["url"] ."' role='button'></center>";
 
       echo '</td>';
 
       echo '<td>';
 
-      echo "<center><a class='glyphicon glyphicon-download-alt' href='upload/" . $resultat["url"] ."' download></center>";
+      echo "<center><a class='glyphicon glyphicon-download-alt btn btn-default' href='upload/" . $resultat["url"] ."' role='button' download></center>";
 
       echo '</td>';
 
-      echo '<td class="col-lg-1">';
+      echo '<td>';
 
-      echo '<center><a href="index.php?url=editerOeuvre&amp;idOeuvre=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-pencil"></span></a></center>';
-
-      echo '</td>';
-
-      echo '<td class="col-lg-1">';
-
-      echo '<center><button type="submit" class="btn btn-primary" name=\'delete\' value=" ' . $resultat['id_oeuvre'] . '"><i class="glyphicon glyphicon-remove"></i></button></center>';
+      echo '<center><a href="index.php?url=editerOeuvre&amp;idOeuvre=' . $resultat['id_oeuvre'] . '" class="btn btn-warning" role="button">  <span class="glyphicon glyphicon-pencil"></span></a></center>';
 
       echo '</td>';
 
-     echo '<td class="col-lg-1">';
+      echo '<td>';
 
-      echo '<center><a href="index.php?url=ajouterOeuvreInventaireAuGroupe&amp;idOeuvre=' . $resultat['id_oeuvre'] . '">  <span class="glyphicon glyphicon-plus"></span></a></center>';
+      echo '<center><button type="submit" class="btn btn-danger" name=\'delete\' value=" ' . $resultat['id_oeuvre'] . '"><i class="glyphicon glyphicon-remove"></i></button></center>';
+
+      echo '</td>';
+
+     echo '<td>';
+
+      echo '<center><a href="index.php?url=ajouterOeuvreInventaireAuGroupe&amp;idOeuvre=' . $resultat['id_oeuvre'] . '" class="btn btn-success" role="button">  <span class="glyphicon glyphicon-plus"></span></a></center>';
 
       echo '</td>';
 

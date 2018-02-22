@@ -124,9 +124,9 @@
 					<?php
 					if (  $_SESSION["utilisateur"]["id"] == $chefOrchestre[0]["ID_UTILISATEUR"] )
 					{
-						echo							"<a style='color:green'  href='index.php?url=interfaceGroupe&amp;idGroupe=";
+						echo							"<a   href='index.php?url=interfaceGroupe&amp;idGroupe=";
 						echo $nomGroupe[0]["ID_GROUPE"];
-						echo "&amp;AjouterEvenement=1'>Ajouter un évènement</a>";
+						echo "&amp;AjouterEvenement=1' class='btn btn-default' role='button'>Ajouter un évènement</a>";
 					}
 					?>
 
@@ -134,7 +134,7 @@
 						foreach ($evenements as $value)
 						{?>
 							<div class="panel panel-default">
-								<a style="color:red;float:right;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;idEvenement=<?php echo $value['ID_EVENEMENT']; ?>"  class="glyphicon glyphicon-remove"></a>
+								<a style="float:right; margin:.1vw;" href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE']; ?>&amp;idEvenement=<?php echo $value['ID_EVENEMENT']; ?>"  class="glyphicon glyphicon-remove btn btn-danger" role="button"></a>
 								<div class="panel-heading" style="text-align: center">
 									<h4><b><?php echo date("d/m/y",strtotime($value["date_evenement"])) ; ?></b> : <?php echo $value["libelle"] ;?></h4>
 								</div>
@@ -203,7 +203,7 @@
 						<!-- main col right -->
 						<div class="col-sm-7">
 							<div class="panel panel-default">
-								<div class="panel-heading"><a href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE'];?>&amp;ajouter=1" class="pull-right">Ajouter un utilisateur au groupe</a> <h4>Utilisateurs</h4></div>
+								<div class="panel-heading"><a href="index.php?url=interfaceGroupe&amp;idGroupe=<?php echo $nomGroupe[0]['ID_GROUPE'];?>&amp;ajouter=1" class="pull-right btn btn-default" role="button">Ajouter un utilisateur au groupe</a> <h4>Utilisateurs</h4></div>
 								<div class="panel-body">
 
 									<table class="table table-hover" id="myTable">
@@ -289,7 +289,7 @@
 								<div class="panel-heading">
 									<div class="pull-right" class="dropdown show">
 										<div class="dropdown">
-											<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 												Ajouter une oeuvre
 											</button>
 											<div  class="dropdown-menu" aria-labelledby="dropdownMenuButton">
