@@ -129,7 +129,16 @@
 
       echo '<td>';
 
-      echo $resultat["instrument"][0]["libellé"];
+      if(isset($resultat["instrument"][0]["libellé"]))
+      {
+         echo $resultat["instrument"][0]["libellé"];
+      }
+      else
+      {
+        echo 'Non Renseigné';
+      }
+
+     
 
       echo '</td>';
 

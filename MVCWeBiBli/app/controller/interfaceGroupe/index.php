@@ -45,6 +45,21 @@ else if (isset($_GET["AjouterEvenement"]))
 {
 	require_once(APP . 'app/view/interfaceGroupe/ajouterEvenement.php');
 }
+else if (isset($_GET["EditerDifficulte"]))
+{
+	$Oeuvre = new Oeuvre();
+
+	if(isset($_POST['submit']))
+	{		
+		$editerDiffculte = $Oeuvre->updateDifficulte($_GET['EditerDifficulte'], $_POST['choixDifficulte']);
+		header("Location: index.php?url=interfaceGroupe&idGroupe=" . $_GET["idGroupe"]);
+	}
+
+	$oeuvre = $Oeuvre->getOeuvresAvecID($_GET['EditerDifficulte']);
+	
+
+	require_once(APP . 'app/view/interfaceGroupe/editerDifficulteOeuvre.php');	
+}
 else
 {
 	if (isset($_POST["sub"]))

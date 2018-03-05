@@ -55,12 +55,20 @@ class Oeuvre
 
 	}
 
-	function getOeuvreInventairePasDansGroupe($idUtilisateur, $idGroupe)
+	public function getOeuvreInventairePasDansGroupe($idUtilisateur, $idGroupe)
 	{
 		$sql = "SELECT * FROM `oeuvre` where `ID_OEUVRE` in ( select ID_OEUVRE from post where ID_GROUPE=0 and ID_UTILISATEUR=$idUtilisateur ) and `ID_OEUVRE` not in ( select ID_OEUVRE from post where ID_GROUPE=$idGroupe)" ;
 		$query = $this->db->prepare($sql);
 		$query->execute();
 		return $query->fetchAll();				
+	}
+
+	public function updateDifficulte($idOeuvre, $difficulte)
+	{
+		$sql = "UPDATE `oeuvre` SET `DIFFICULTE`='" . $difficulte . "' WHERE `ID_OEUVRE` = $idOeuvre";
+		$query = $this->db->prepare($sql);
+		$query->execute();	
+
 	}
 
 	

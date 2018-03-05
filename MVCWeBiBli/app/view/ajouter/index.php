@@ -13,7 +13,17 @@
 <div class="panel panel-default col-lg-4 col-lg-offset-4" style="margin-top: 10vh; ">
 
   <center><h3>Ajouter une oeuvre</h3>
-    <h4 style="color:red"><?php if (isset($err)) echo ($err); ?></h4>
+  <div class="col-sm-6 col-sm-offset-3"> 
+    <?php if (isset($err))
+          {
+              ?><div class="alert alert-danger" style="margin-top: 5px;">
+              <?php echo '<strong>Attention!</strong> ' . $err ?>
+              </div>
+              <?php
+              }
+    ?>
+  </div>  
+
     <form method="post" action="" enctype="multipart/form-data">
       <div class="col-lg-8 col-lg-offset-2">
         <?php 

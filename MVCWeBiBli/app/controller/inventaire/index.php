@@ -39,7 +39,7 @@ foreach ($oeuvres as $oeuvre)
 	$tab[$i]["date"] = date("d/m/Y", strtotime($oeuvre["DATESORTIE"]));
 	$tab[$i]["genre"] = $genre["libellé"];
 	$tab[$i]["url"] = $oeuvre["URL"];
-	$tab[$i]["instrument"] = $Instrument->getInstrumentParId($oeuvre["ID_OEUVRE"]);
+	$tab[$i]["instrument"] = $Instrument->getInstrumentParId($oeuvre["ID_INSTRUMENT"]);
 	$i=$i + 1;
 }
 
