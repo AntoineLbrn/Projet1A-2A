@@ -246,7 +246,7 @@
 
 									?>
 
-									<input type="button" onclick="ouvre()" value="Participer à la discussion">
+									<input type="button" class="btn btn-primary" onclick="ouvre()" value="Participer à la discussion">
 
 								</div>
 
