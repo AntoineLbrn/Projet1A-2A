@@ -31,7 +31,20 @@
 
 								<div class="panel-body">
 
-									<p class="lead">Mon Profil</p>
+									<p class="lead">
+									<?php
+
+										if ($idUtilisateur==$_SESSION['utilisateur']['id'])
+										{
+											echo 'Mon Profil';
+										}
+										else
+										{
+											echo 'Profil de ' . $utilisateur[0]["PRENOM_UTILISATEUR"] . ' ' . $utilisateur[0]["NOM_UTILISATEUR"];
+										}
+
+									?>										
+									</p>
 
 									<div class="col-lg-7">
 
@@ -111,7 +124,17 @@
 
 
 							<div class="panel panel-default">
-								<div class="panel-heading"><a href="index.php?url=inventaire" class="pull-right">Voir tout</a> <h4>Inventaire</h4></div>
+								<div class="panel-heading">
+								<?php 
+
+								if ($idUtilisateur==$_SESSION['utilisateur']['id'])
+								{
+									echo "<a href=\"index.php?url=inventaire\" class=\"pull-right\">Voir tout</a>";
+								}
+
+								?> 
+
+								<h4>Inventaire</h4></div>
 								<div class="panel-body">
 
 
@@ -120,9 +143,8 @@
 										<thead>
 											<tr class="filters">
 												<th><input type="text" class="form-control" placeholder="Titre" disabled></th>
-												<th><input type="text" class="form-control" placeholder="Genre" disabled></th>
-												<th><input type="text" class="form-control" placeholder="Date" disabled></th>
-												<th><input type="text" class="form-control"  placeholder="Editeur" disabled></th>
+												<th class="col-sm-4"><input type="text" class="form-control" placeholder="Genre" disabled></th>
+												<th class="col-sm-3"><input type="text" class="form-control" placeholder="Date" disabled></th>
 
 											</tr>
 										</thead>

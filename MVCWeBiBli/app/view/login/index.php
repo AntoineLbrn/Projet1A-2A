@@ -149,11 +149,11 @@ app.controller('myCtrl', function($scope) {
     if (angular.lowercase($scope.firstName) == angular.lowercase($scope.lastName)) 
    
     	{
-    		return "Mot de passes identiques!";
+    		return "Mots de passe identiques!";
     	}
     	else
     	{
-    		return "Mot de passes différents!";
+    		return "Mots de passe différents!";
     	} 
     }
     
@@ -162,9 +162,9 @@ app.controller('myCtrl', function($scope) {
     }
 
      $scope.getStyle = function(name){
-    if(name == "Mot de passes différents!")
+    if(name == "Mots de passe différents!")
       return {'color':'red'};
-    if(name == "Mot de passes identiques!")
+    if(name == "Mots de passe identiques!")
       return {'color':'green'};
     }
    

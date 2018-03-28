@@ -8,7 +8,9 @@ require_once (APP . 'app/model/groupe.php');
 require_once (APP . 'app/model/Utilisateur.php');
 
 
-$idUtilisateur = $_GET["idUtilisateur"];/* Affichage des Oeuvres */
+$idUtilisateur = $_GET["idUtilisateur"];
+
+/* Affichage des Oeuvres */
 $Post = new Post();
 $Utilisateur = new Utilisateur();
 $utilisateur = $Utilisateur->getUtilisateurParId($idUtilisateur);
